@@ -9,15 +9,19 @@ import Footer from "./components/Footer.jsx";
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem("theme") === "dark";
+    // Check localStorage first, then system preference
+    const saved = localStorage.getItem("theme");
+    if (saved) return saved === "dark";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
+    const html = document.documentElement;
     if (darkMode) {
-      document.body.classList.add("dark-mode");
+      html.classList.add("dark");
     } else {
-      document.body.classList.remove("dark-mode");
+      html.classList.remove("dark");
     }
     localStorage.setItem("theme", darkMode ? "dark" : "light");
   }, [darkMode]);

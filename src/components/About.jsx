@@ -13,7 +13,7 @@ function About() {
                 className="icon"
               />
               <h3>Experience</h3>
-              <p>Warehouse Dispatcher<br />Retail Team Member</p>
+              <p>Warehouse Dispatcher<br />Retail Team Member @ COLES</p>
             </div>
             <div className="details-container">
               <img

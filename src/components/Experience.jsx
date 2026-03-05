@@ -31,10 +31,8 @@ function SkillArticle({ name, level }) {
 function Experience() {
   return (
     <section id="experience">
+      <p className="section__text__p1">What I use for software, electronics, and computer vision work.</p>
       <h1 className="title">Skills &amp; Tools</h1>
-      <p className="skills-subtitle">
-        What I use for software, electronics, and computer vision work.
-      </p>
       <div className="experience-details-container">
         <div className="about-containers skills-grid">
           <div className="details-container skills-card">
