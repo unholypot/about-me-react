@@ -38,7 +38,7 @@ function About() {
               Python, LTspice, and MATLAB, I enjoy solving complex engineering problems —
               from simulating solar inverters to building multithreaded operating systems in C.
               I'm a quick learner who thrives in collaborative, technically challenging
-              environments.
+              environments. I also love crabs 🦀.
             </p>
           </div>
         </div>
