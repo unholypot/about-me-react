@@ -87,6 +87,7 @@ html.dark {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -95,6 +96,10 @@ body {
   color: var(--clr-text);
   transition: background-color 350ms ease, color 350ms ease;
   min-height: 100vh;
+  /* Prevent horizontal scroll caused by decorative elements (e.g. #profile::before glow)
+     that extend outside their section bounds. overflow-x: clip is used instead of hidden
+     so position: sticky on the navbar is not affected. */
+  overflow-x: clip;
 
   /* Subtle paper texture via repeating gradient */
   background-image:
