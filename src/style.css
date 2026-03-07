@@ -50,6 +50,9 @@
   /* Motion */
   --ease-retro: cubic-bezier(0.34, 1.56, 0.64, 1);
   --transition: 220ms var(--ease-retro);
+
+  /* Scroll offset — matches sticky nav height */
+  --nav-height: 17vh;
 }
 
 /* ── DARK MODE TOKENS ────────────────────────────────────── */
@@ -1228,6 +1231,7 @@ html.dark .timeline-year {
 }
 
 @media screen and (max-width: 1200px) {
+  :root { --nav-height: 5rem; }
   #desktop-nav { display: none; }
   #hamburger-nav { display: flex; }
   #experience, .experience-details-container { margin-top: 2rem; }
@@ -1332,4 +1336,12 @@ html.dark .timeline-year {
   .btn { font-size: 0.95rem; padding: 0.95rem 1.8rem; }
 
   .nav-links { font-size: 1rem; }
+}
+
+/* ── SCROLL OFFSET — keeps section headings below sticky nav ─ */
+#about,
+#experience,
+#projects,
+#contact {
+  scroll-margin-top: var(--nav-height);
 }
