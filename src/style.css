@@ -615,7 +615,12 @@ html.dark img[src*="dmode_black.png"] {
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.05em;
-  transition: var(--transition);
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease,
+    transform 220ms var(--ease-retro),
+    box-shadow 220ms var(--ease-retro);
   padding: 0.8rem 1.4rem;
   width: 9rem;
   border-radius: var(--radius-pill);
@@ -657,14 +662,14 @@ html.dark .btn-color-1:hover {
 
 /* Secondary button — outlined */
 .btn-color-2 {
-  background: transparent;
+  background-color: #ffd34e00;
   color: var(--clr-text);
   border: 2px solid var(--clr-border);
   box-shadow: var(--shadow-sm);
 }
 
 .btn-color-2:hover {
-  background: var(--clr-primary);
+  background-color: var(--clr-primary);
   border-color: var(--clr-primary);
   color: var(--clr-text);
   transform: translate(-2px, -2px);
@@ -677,7 +682,7 @@ html.dark .btn-color-2 {
 }
 
 html.dark .btn-color-2:hover {
-  background: rgba(255,211,78,0.12);
+  background-color: rgba(255,211,78,0.12);
   border-color: var(--clr-primary);
   color: var(--clr-primary);
 }
