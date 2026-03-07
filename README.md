@@ -1,16 +1,26 @@
-# React + Vite
+# About Me — Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal portfolio website built with React and Vite, deployed on Vercel.
 
-Currently, two official plugins are available:
+## Live Site@
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+allensaji.com
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Responsive design** with mobile navigation support
+- **Dark / light mode** with system preference detection and localStorage persistence
+- **Animated sections** powered by Framer Motion
+- **Sections:** Profile, About, Experience, Project Timeline, Contact, Footer
+- **Vercel Analytics** for page view tracking
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Tool | Purpose |
+|---|---|
+| React 19 | UI framework |
+| Vite | Build tool & dev server |
+| Framer Motion | Animations |
+| Vercel Analytics | Page view tracking |
+| Vercel | Hosting & deployment |
+
