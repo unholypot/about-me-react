@@ -55,17 +55,17 @@ const timelineEntries = [
 function Timeline() {
   return (
     <motion.section
-      id="timeline"
+      id="projects"
       variants={staggerContainer(0.15)}
       initial="hidden"
       whileInView="visible"
       viewport={defaultViewport}
     >
       <motion.p className="section__text__p1" variants={fadeUp}>
-        My Journey
+        Browse My Recent
       </motion.p>
       <motion.h1 className="title" variants={fadeUp}>
-        Timeline
+        Projects
       </motion.h1>
 
       <motion.div className="timeline" variants={fadeUp}>
