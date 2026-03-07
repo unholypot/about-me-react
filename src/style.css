@@ -1092,6 +1092,197 @@ html.dark section + section::before {
   text-shadow: 0 0 10px var(--clr-secondary);
 }
 
+/* ── TIMELINE ───────────────────────────────────────────── */
+#timeline {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.timeline {
+  position: relative;
+  margin-top: 2.5rem;
+  padding: 1rem 0;
+}
+
+/* Vertical centre line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--clr-border) 6%,
+    var(--clr-border) 94%,
+    transparent 100%
+  );
+  transform: translateX(-50%);
+  border-radius: var(--radius-pill);
+}
+
+html.dark .timeline::before {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--clr-border) 6%,
+    var(--clr-border) 94%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px rgba(238, 69, 126, 0.15);
+}
+
+/* Each item row */
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  width: 50%;
+  padding: 0 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Left-side items: push to right half, align card to the left of centre */
+.timeline-item--left {
+  margin-left: 0;
+  margin-right: auto;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+/* Right-side items: push to left half, align card to the right of centre */
+.timeline-item--right {
+  margin-left: auto;
+  margin-right: 0;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+/* ── TIMELINE NODE (dot on the line) ───────────────────── */
+.timeline-node {
+  position: absolute;
+  top: 1.1rem;
+  width: 1rem;
+  height: 1rem;
+  z-index: 2;
+}
+
+.timeline-item--left .timeline-node {
+  right: -0.5rem;
+}
+
+.timeline-item--right .timeline-node {
+  left: -0.5rem;
+}
+
+.timeline-node-dot {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: var(--clr-primary);
+  border: 3px solid var(--clr-surface);
+  box-shadow: 0 0 0 2px var(--clr-border);
+  transition: var(--transition);
+}
+
+html.dark .timeline-node-dot {
+  background: var(--clr-secondary);
+  box-shadow: 0 0 0 2px var(--clr-border), 0 0 10px rgba(238, 69, 126, 0.4);
+}
+
+/* ── TIMELINE CARD ─────────────────────────────────────── */
+.timeline-card {
+  background: var(--clr-surface);
+  border: 2px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 1.5rem 1.75rem;
+  transition: transform 220ms var(--ease-retro), box-shadow 220ms ease, border-color 220ms ease;
+  max-width: 100%;
+}
+
+.timeline-card:hover {
+  transform: translate(-2px, -3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--clr-primary);
+}
+
+html.dark .timeline-card {
+  background: var(--clr-surface);
+  border-color: var(--clr-border);
+}
+
+html.dark .timeline-card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--clr-primary);
+}
+
+/* ── TIMELINE CARD CONTENT ─────────────────────────────── */
+.timeline-year {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--clr-secondary);
+  background: transparent;
+  margin-bottom: 0.4rem;
+}
+
+html.dark .timeline-year {
+  color: var(--clr-primary);
+  text-shadow: 0 0 10px rgba(255, 211, 78, 0.4);
+}
+
+.timeline-card-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--clr-text);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.timeline-card-desc {
+  font-size: 0.9rem;
+  color: var(--clr-text-2);
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.timeline-card-desc:last-child {
+  margin-bottom: 0;
+}
+
+/* Tags row */
+.timeline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.timeline-item--left .timeline-tags {
+  justify-content: flex-end;
+}
+
+.timeline-item--right .timeline-tags {
+  justify-content: flex-start;
+}
+
+/* Make chips inside timeline non-clickable & slightly smaller */
+.timeline-tags .chip {
+  cursor: default;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.7rem;
+}
+
 /* ── RESPONSIVE ──────────────────────────────────────────── */
 @media screen and (max-width: 1400px) {
   #profile { height: 83vh; margin-bottom: 2rem; }
@@ -1113,6 +1304,35 @@ html.dark section + section::before {
   .section__pic-container { width: 275px; height: 275px; margin: 0 auto 2rem; }
   .about-containers { margin-top: 0; }
   section + section::before { display: none; }
+
+  /* Timeline → single-column, line on the left */
+  .timeline::before {
+    left: 0.5rem;
+    transform: none;
+  }
+
+  .timeline-item,
+  .timeline-item--left,
+  .timeline-item--right {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 2.5rem;
+    padding-right: 0;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .timeline-item--left .timeline-node,
+  .timeline-item--right .timeline-node {
+    left: 0;
+    right: auto;
+  }
+
+  .timeline-item--left .timeline-tags,
+  .timeline-item--right .timeline-tags {
+    justify-content: flex-start;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -1145,6 +1365,26 @@ html.dark section + section::before {
   #hamburger-nav { padding: 0.75rem 1rem; }
   .hamburger-menu { gap: 0.5rem; }
   .hamburger-menu .dark-mode-toggle { margin-right: 0 !important; }
+
+  /* Timeline mobile tweaks */
+  .timeline-item,
+  .timeline-item--left,
+  .timeline-item--right {
+    padding-left: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .timeline-card {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .timeline-card-title {
+    font-size: 0.95rem;
+  }
+
+  .timeline-card-desc {
+    font-size: 0.85rem;
+  }
 }
 
 /* ── PROJECT CAROUSEL ───────────────────────────────────── */

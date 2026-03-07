@@ -4,6 +4,7 @@ import Profile from "./components/Profile.jsx";
 import About from "./components/About.jsx";
 import Experience from "./components/Experience.jsx";
 import Projects from "./components/Projects.jsx";
+import Timeline from "./components/Project_timeline.jsx";
 import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
 
@@ -41,6 +42,7 @@ function App() {
       <About />
       <Experience />
       <Projects />
+      <Timeline />
       <Contact />
       <Footer />
     </>
