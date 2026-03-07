@@ -1,10 +1,31 @@
+import { motion } from "framer-motion";
+import {
+  fadeUp,
+  staggerContainer,
+  staggerItem,
+  defaultViewport,
+} from "../utils/motion";
+
 function Contact() {
   return (
-    <section id="contact">
-      <p className="section__text__p1">Get in Touch</p>
-      <h1 className="title">Contact Me</h1>
-      <div className="contact-info-upper-container">
-        <div className="contact-info-container">
+    <motion.section
+      id="contact"
+      variants={staggerContainer(0.12)}
+      initial="hidden"
+      whileInView="visible"
+      viewport={defaultViewport}
+    >
+      <motion.p className="section__text__p1" variants={fadeUp}>
+        Get in Touch
+      </motion.p>
+      <motion.h1 className="title" variants={fadeUp}>
+        Contact Me
+      </motion.h1>
+      <motion.div
+        className="contact-info-upper-container"
+        variants={staggerContainer(0.15)}
+      >
+        <motion.div className="contact-info-container" variants={staggerItem}>
           <img
             src="/assets/email.png"
             alt="Email icon"
@@ -13,8 +34,8 @@ function Contact() {
           <p>
             <a href="mailto:allensaji012@gmail.com">allensaji012@gmail.com</a>
           </p>
-        </div>
-        <div className="contact-info-container">
+        </motion.div>
+        <motion.div className="contact-info-container" variants={staggerItem}>
           <img
             src="/assets/linkedin.png"
             alt="LinkedIn icon"
@@ -29,9 +50,9 @@ function Contact() {
               LinkedIn
             </a>
           </p>
-        </div>
-      </div>
-    </section>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   );
 }
 

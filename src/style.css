@@ -1147,6 +1147,118 @@ html.dark section + section::before {
   .hamburger-menu .dark-mode-toggle { margin-right: 0 !important; }
 }
 
+/* ── PROJECT CAROUSEL ───────────────────────────────────── */
+.project-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  position: relative;
+}
+
+.carousel-viewport {
+  width: 100%;
+  max-width: 32rem;
+  min-height: 14rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+}
+
+.carousel-card {
+  width: 100%;
+  flex-shrink: 0;
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.carousel-card:active {
+  cursor: grabbing;
+}
+
+.carousel-arrow {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--clr-border);
+  background: var(--clr-surface);
+  color: var(--clr-text);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.carousel-arrow:hover {
+  background: var(--clr-primary);
+  border-color: var(--clr-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+html.dark .carousel-arrow:hover {
+  background: var(--clr-secondary);
+  border-color: var(--clr-secondary);
+  color: #fff;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--clr-border);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: var(--transition);
+}
+
+.carousel-dot--active {
+  background: var(--clr-primary);
+  border-color: var(--clr-primary);
+  box-shadow: 0 0 0 3px rgba(255, 211, 78, 0.2);
+}
+
+html.dark .carousel-dot--active {
+  background: var(--clr-secondary);
+  border-color: var(--clr-secondary);
+  box-shadow: 0 0 0 3px rgba(238, 69, 126, 0.25);
+}
+
+/* Carousel responsive */
+@media screen and (max-width: 600px) {
+  .carousel-viewport {
+    max-width: 100%;
+    min-height: 16rem;
+  }
+
+  .carousel-arrow {
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 1rem;
+  }
+
+  .project-carousel {
+    gap: 0.5rem;
+  }
+}
+
 /* ── DESKTOP TYPOGRAPHY REFINEMENT ───────────────────────── */
 @media (min-width: 1024px) {
   .text-container p,
