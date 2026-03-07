@@ -1,26 +1,34 @@
-# About Me — Personal Portfolio
+# Personal Portfolio Website
 
-A personal portfolio website built with React and Vite, deployed on Vercel.
+This is my personal portfolio website built with React and Vite and deployed on Vercel.  
+The site is designed to showcase my projects, resume, and links in one place.
 
-## Live Site@
+## Live Site
+https://allensaji.com
 
-allensaji.com
+## Overview
+
+This website serves as a central place for:
+- introducing myself
+- showcasing selected projects
+- sharing my resume
+- linking to my GitHub, LinkedIn, and other work
 
 ## Features
 
-- **Responsive design** with mobile navigation support
-- **Dark / light mode** with system preference detection and localStorage persistence
-- **Animated sections** powered by Framer Motion
-- **Sections:** Profile, About, Experience, Project Timeline, Contact, Footer
-- **Vercel Analytics** for page view tracking
+- Responsive design for desktop and mobile
+- Light and dark mode with saved theme preference
+- Smooth scroll-based animations
+- Project timeline showcasing my work
+- Contact section and external links
+- Vercel analytics for basic visitor tracking
 
 ## Tech Stack
 
 | Tool | Purpose |
 |---|---|
-| React 19 | UI framework |
-| Vite | Build tool & dev server |
-| Framer Motion | Animations |
+| React | Frontend framework |
+| Vite | Development and build tooling |
+| Framer Motion | UI animations |
 | Vercel Analytics | Page view tracking |
-| Vercel | Hosting & deployment |
-
+| Vercel | Hosting and deployment |
