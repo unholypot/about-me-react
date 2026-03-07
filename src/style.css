@@ -377,6 +377,7 @@ section {
   margin: 0 10rem;
   box-sizing: border-box;
   min-height: fit-content;
+  overflow: visible;
 }
 
 .section-container {
@@ -435,13 +436,13 @@ html.dark .title {
   height: 80vh;
   align-items: center;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 #profile::before {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: -40% -30%;
   background: var(--glow-hero);
   pointer-events: none;
   z-index: 0;
@@ -1140,7 +1141,7 @@ html.dark section + section::before {
   .section__pic-container { width: auto; height: 46vw; justify-content: center; }
   .section__text__p2 { font-size: 1rem; }
   .title { font-size: 2rem; }
-  .text-container { text-align: justify; }
+  .text-container { text-align: start; }
   #hamburger-nav { padding: 0.75rem 1rem; }
   .hamburger-menu { gap: 0.5rem; }
   .hamburger-menu .dark-mode-toggle { margin-right: 0 !important; }
