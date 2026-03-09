@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   fadeUp,
@@ -229,9 +229,42 @@ function DetailPanel({ entry }) {
 function Timeline() {
   const [expandedId, setExpandedId] = useState(null);
   const [hoveredId, setHoveredId] = useState(null);
+  const hoverTimeout = useRef(null);
+  const cardRefs = useRef({});
+  const panelRefs = useRef({});
+
+  // Only apply hover logic on desktop viewports (≥ 1024px)
+  const isDesktop = () =>
+    typeof window !== "undefined" &&
+    window.matchMedia("(min-width: 1024px)").matches;
 
   const handleToggle = (title) =>
     setExpandedId((prev) => (prev === title ? null : title));
+
+  const startHover = (title) => {
+    if (!isDesktop()) return;
+    clearTimeout(hoverTimeout.current);
+    setHoveredId(title);
+  };
+
+  const endHover = () => {
+    if (!isDesktop()) return;
+    hoverTimeout.current = setTimeout(() => setHoveredId(null), 120);
+  };
+
+  // Close click-locked panel when clicking outside the active card + panel
+  useEffect(() => {
+    if (!expandedId) return;
+    const handleDocClick = (e) => {
+      const card = cardRefs.current[expandedId];
+      const panel = panelRefs.current[expandedId];
+      if (!card?.contains(e.target) && !panel?.contains(e.target)) {
+        setExpandedId(null);
+      }
+    };
+    document.addEventListener("mousedown", handleDocClick);
+    return () => document.removeEventListener("mousedown", handleDocClick);
+  }, [expandedId]);
 
   return (
     <motion.section
@@ -257,6 +290,7 @@ function Timeline() {
 
           const cardEl = (
             <div
+              ref={(el) => { cardRefs.current[entry.title] = el; }}
               className={`timeline-card${isActive ? " timeline-card--expanded" : ""}`}
               role="button"
               tabIndex={0}
@@ -269,6 +303,8 @@ function Timeline() {
                   handleToggle(entry.title);
                 }
               }}
+              onMouseEnter={() => startHover(entry.title)}
+              onMouseLeave={endHover}
             >
               <span className="timeline-year">{entry.year}</span>
               <h3 className="timeline-card-title">{entry.title}</h3>
@@ -295,19 +331,25 @@ function Timeline() {
           );
 
           const panelEl = (
-            <AnimatePresence>
-              {isActive && (
-                <motion.div
-                  key={`detail-${uid}`}
-                  variants={panelVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                >
-                  <DetailPanel entry={entry} />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <div
+              ref={(el) => { panelRefs.current[entry.title] = el; }}
+              onMouseEnter={() => startHover(entry.title)}
+              onMouseLeave={endHover}
+            >
+              <AnimatePresence>
+                {isActive && (
+                  <motion.div
+                    key={`detail-${uid}`}
+                    variants={panelVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                  >
+                    <DetailPanel entry={entry} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           );
 
           return (
@@ -317,8 +359,6 @@ function Timeline() {
                 isLeft ? " timeline-row--left" : " timeline-row--right"
               }`}
               variants={staggerItem}
-              onMouseEnter={() => setHoveredId(entry.title)}
-              onMouseLeave={() => setHoveredId(null)}
             >
               {/* Left column */}
               <div className="tl-col tl-col--left">
