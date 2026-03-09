@@ -928,7 +928,6 @@ html.dark .contact-info-upper-container:hover {
 }
 
 html.dark .chip:hover {
-  /* Yellow bg needs dark text — reuse the same dark value as .btn-color-1 in dark mode */
   color: var(--clr-bg-alt);
 }
 
@@ -955,7 +954,7 @@ footer nav {
 
 footer p {
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: var(--clr-text-3);
   font-family: var(--font-display);
 }
@@ -1349,9 +1348,9 @@ html.dark .timeline-preview-panel {
   display: inline-block;
   margin-top: 0.75rem;
   font-family: var(--font-display);
-  font-size: 0.62rem;
+  font-size: 0.65rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: var(--clr-text-3);
   opacity: 0.65;
 }
