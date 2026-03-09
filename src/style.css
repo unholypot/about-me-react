@@ -927,6 +927,11 @@ html.dark .contact-info-upper-container:hover {
   outline-offset: 3px;
 }
 
+html.dark .chip:hover {
+  /* Yellow bg needs dark text — reuse the same dark value as .btn-color-1 in dark mode */
+  color: var(--clr-bg-alt);
+}
+
 /* ── FOOTER ──────────────────────────────────────────────── */
 footer {
   height: 26vh;
@@ -1294,29 +1299,35 @@ html.dark .timeline-card--expanded .timeline-card-chevron {
 }
 
 .timeline-preview-panel {
-  background: var(--clr-bg-alt);
+  /* Lighter background than the full detail panel — feels like a floating overlay */
+  background: var(--clr-surface);
   border: 2px solid var(--clr-primary);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
+  /* Soft blurred shadow instead of the chunky hard-offset retro shadow */
+  box-shadow: 0 2px 10px rgba(100, 70, 20, 0.10), 0 8px 22px rgba(100, 70, 20, 0.07);
   padding: 1.25rem 1.5rem;
   text-align: left;
 }
 
 html.dark .timeline-preview-panel {
-  background: var(--clr-surface-2);
+  /* Slightly lighter purple than --clr-surface-2 (#261C40) for a lifted feel */
+  background: #2D2050;
   border-color: var(--clr-primary);
-  box-shadow: var(--shadow-lg), 0 0 14px rgba(255, 211, 78, 0.08);
+  /* Soft ambient glow — no hard offset */
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.42), 0 0 16px rgba(255, 211, 78, 0.07);
 }
 
 /* Truncated overview — shows ~4 lines max */
 .timeline-preview-overview {
   font-size: 0.9rem;
   color: var(--clr-text-2);
+  opacity: 0.84;
   line-height: 1.75;
   margin-bottom: 0.75rem;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
+  line-clamp: 4;
   overflow: hidden;
 }
 
@@ -1324,10 +1335,12 @@ html.dark .timeline-preview-panel {
 .timeline-preview-role {
   font-size: 0.85rem;
   color: var(--clr-text-2);
+  opacity: 0.80;
   line-height: 1.65;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
 }
 
