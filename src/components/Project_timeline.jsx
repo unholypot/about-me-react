@@ -12,7 +12,23 @@ const prefersReducedMotion =
   typeof window !== "undefined" &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* ── DETAIL PANEL ANIMATION VARIANTS ───────────────────── */
+/* ── ANIMATION VARIANTS ─────────────────────────────────── */
+/* Hover preview: lighter, faster */
+const previewVariants = {
+  hidden: prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -6 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: prefersReducedMotion ? 0.01 : 0.18, ease: [0.25, 0.1, 0.25, 1] },
+  },
+  exit: {
+    opacity: 0,
+    y: prefersReducedMotion ? 0 : -6,
+    transition: { duration: prefersReducedMotion ? 0.01 : 0.14, ease: [0.25, 0.1, 0.25, 1] },
+  },
+};
+
+/* Full detail panel: deliberate, stable */
 const panelVariants = {
   hidden: prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -10 },
   visible: {
@@ -146,6 +162,23 @@ const timelineEntries = [
   },
 ];
 
+/* ── COMPACT HOVER PREVIEW PANEL ───────────────────────── */
+function PreviewPanel({ entry }) {
+  return (
+    <div className="timeline-preview-panel">
+      <span className="timeline-detail-label">◈ case study</span>
+      <p className="timeline-preview-overview">{entry.overview}</p>
+      {entry.role && (
+        <div className="timeline-detail-section">
+          <h4 className="timeline-detail-section-title">What I Did</h4>
+          <p className="timeline-preview-role">{entry.role}</p>
+        </div>
+      )}
+      <span className="timeline-preview-hint">↓ Click to expand full case study</span>
+    </div>
+  );
+}
+
 /* ── DETAIL PANEL COMPONENT ─────────────────────────────── */
 function DetailPanel({ entry }) {
   const { github, liveDemo, report } = entry.links ?? {};
@@ -227,44 +260,76 @@ function DetailPanel({ entry }) {
 
 /* ── MAIN TIMELINE COMPONENT ────────────────────────────── */
 function Timeline() {
-  const [expandedId, setExpandedId] = useState(null);
-  const [hoveredId, setHoveredId] = useState(null);
-  const hoverTimeout = useRef(null);
+  // ── Desktop: click-locked full panel (one at a time) ──
+  const [desktopOpenId, setDesktopOpenId] = useState(null);
+  // ── Desktop: hover compact floating preview ────────────
+  const [hoverPreviewId, setHoverPreviewId] = useState(null);
+  // ── Mobile: independent per-card toggle (object map) ──
+  const [mobileOpenIds, setMobileOpenIds] = useState({});
+
+  // ── Breakpoint: matches CSS @media (max-width: 1200px) ─
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== "undefined" && window.innerWidth <= 1200
+  );
+
+  const hoverTimer = useRef(null);
   const cardRefs = useRef({});
   const panelRefs = useRef({});
 
-  // Only apply hover logic on desktop viewports (≥ 1024px)
-  const isDesktop = () =>
-    typeof window !== "undefined" &&
-    window.matchMedia("(min-width: 1024px)").matches;
-
-  const handleToggle = (title) =>
-    setExpandedId((prev) => (prev === title ? null : title));
-
-  const startHover = (title) => {
-    if (!isDesktop()) return;
-    clearTimeout(hoverTimeout.current);
-    setHoveredId(title);
-  };
-
-  const endHover = () => {
-    if (!isDesktop()) return;
-    hoverTimeout.current = setTimeout(() => setHoveredId(null), 120);
-  };
-
-  // Close click-locked panel when clicking outside the active card + panel
+  // Sync isMobile with viewport changes
   useEffect(() => {
-    if (!expandedId) return;
+    const mq = window.matchMedia("(max-width: 1200px)");
+    const handler = (e) => {
+      setIsMobile(e.matches);
+      if (e.matches) {
+        clearTimeout(hoverTimer.current);
+        setDesktopOpenId(null);
+        setHoverPreviewId(null);
+      } else {
+        setMobileOpenIds({});
+      }
+    };
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  // Desktop: close full panel when clicking outside card + panel
+  useEffect(() => {
+    if (!desktopOpenId) return;
     const handleDocClick = (e) => {
-      const card = cardRefs.current[expandedId];
-      const panel = panelRefs.current[expandedId];
+      const card = cardRefs.current[desktopOpenId];
+      const panel = panelRefs.current[desktopOpenId];
       if (!card?.contains(e.target) && !panel?.contains(e.target)) {
-        setExpandedId(null);
+        setDesktopOpenId(null);
       }
     };
     document.addEventListener("mousedown", handleDocClick);
     return () => document.removeEventListener("mousedown", handleDocClick);
-  }, [expandedId]);
+  }, [desktopOpenId]);
+
+  // Hover handlers — desktop only, card element only
+  const startHover = (title) => {
+    if (isMobile) return;
+    clearTimeout(hoverTimer.current);
+    setHoverPreviewId(title);
+  };
+
+  const endHover = () => {
+    if (isMobile) return;
+    hoverTimer.current = setTimeout(() => setHoverPreviewId(null), 120);
+  };
+
+  // Desktop click — one open at a time, clicking same card closes it
+  const handleDesktopClick = (title) => {
+    setDesktopOpenId((prev) => (prev === title ? null : title));
+    clearTimeout(hoverTimer.current);
+    setHoverPreviewId(null);
+  };
+
+  // Mobile tap — each card independently toggled
+  const handleMobileToggle = (title) => {
+    setMobileOpenIds((prev) => ({ ...prev, [title]: !prev[title] }));
+  };
 
   return (
     <motion.section
@@ -284,27 +349,43 @@ function Timeline() {
       <motion.div className="timeline" variants={fadeUp}>
         {timelineEntries.map((entry, index) => {
           const isLeft = index % 2 === 0;
-          const isLocked = expandedId === entry.title;
-          const isActive = isLocked || hoveredId === entry.title;
           const uid = `${entry.year}-${entry.title}`;
+
+          // Desktop derived state
+          const isDesktopOpen = desktopOpenId === entry.title;
+          // Hover preview only shows when no full panel is open for this card
+          const isHoverPreview = !isMobile && hoverPreviewId === entry.title && !isDesktopOpen;
+          const desktopCardActive = isDesktopOpen || isHoverPreview;
+
+          // Mobile derived state
+          const isMobileOpen = isMobile && !!mobileOpenIds[entry.title];
+
+          // Combined for card styling / dot
+          const isCardActive = isMobile ? isMobileOpen : desktopCardActive;
 
           const cardEl = (
             <div
               ref={(el) => { cardRefs.current[entry.title] = el; }}
-              className={`timeline-card${isActive ? " timeline-card--expanded" : ""}`}
+              className={`timeline-card${isCardActive ? " timeline-card--expanded" : ""}`}
               role="button"
               tabIndex={0}
-              aria-expanded={isLocked}
-              aria-label={`${entry.title} — ${isLocked ? "collapse" : "expand"} details`}
-              onClick={() => handleToggle(entry.title)}
+              aria-expanded={isMobile ? isMobileOpen : isDesktopOpen}
+              aria-label={`${entry.title} — ${(isMobile ? isMobileOpen : isDesktopOpen) ? "collapse" : "expand"} details`}
+              onClick={() =>
+                isMobile
+                  ? handleMobileToggle(entry.title)
+                  : handleDesktopClick(entry.title)
+              }
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
-                  handleToggle(entry.title);
+                  isMobile
+                    ? handleMobileToggle(entry.title)
+                    : handleDesktopClick(entry.title);
                 }
               }}
-              onMouseEnter={() => startHover(entry.title)}
-              onMouseLeave={endHover}
+              onMouseEnter={!isMobile ? () => startHover(entry.title) : undefined}
+              onMouseLeave={!isMobile ? endHover : undefined}
             >
               <span className="timeline-year">{entry.year}</span>
               <h3 className="timeline-card-title">{entry.title}</h3>
@@ -321,10 +402,12 @@ function Timeline() {
               <div className="timeline-card-expand-hint">
                 <span
                   className={`timeline-card-chevron${
-                    isActive ? " timeline-card-chevron--open" : ""
+                    isCardActive ? " timeline-card-chevron--open" : ""
                   }`}
                 >
-                  {isLocked ? "▲ Collapse" : "▼ View Details"}
+                  {isMobile
+                    ? isMobileOpen ? "▲ Collapse" : "▼ View Details"
+                    : isDesktopOpen ? "▲ Collapse" : "▼ View Details"}
                 </span>
               </div>
             </div>
@@ -333,13 +416,46 @@ function Timeline() {
           const panelEl = (
             <div
               ref={(el) => { panelRefs.current[entry.title] = el; }}
-              onMouseEnter={() => startHover(entry.title)}
-              onMouseLeave={endHover}
+              style={{ position: "relative" }}
             >
+              {/* Desktop: compact floating hover preview — does not affect flow */}
               <AnimatePresence>
-                {isActive && (
+                {isHoverPreview && (
+                  <motion.div
+                    key={`preview-${uid}`}
+                    className="timeline-preview-wrapper"
+                    variants={previewVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    onMouseEnter={() => startHover(entry.title)}
+                    onMouseLeave={endHover}
+                  >
+                    <PreviewPanel entry={entry} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Desktop: full clicked-open panel — renders in normal flow */}
+              <AnimatePresence>
+                {isDesktopOpen && (
                   <motion.div
                     key={`detail-${uid}`}
+                    variants={panelVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                  >
+                    <DetailPanel entry={entry} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Mobile: full panel, independent per-card */}
+              <AnimatePresence>
+                {isMobileOpen && (
+                  <motion.div
+                    key={`mobile-${uid}`}
                     variants={panelVariants}
                     initial="hidden"
                     animate="visible"
@@ -369,7 +485,7 @@ function Timeline() {
               <div className="tl-center">
                 <span
                   className={`timeline-node-dot${
-                    isActive ? " timeline-node-dot--active" : ""
+                    isCardActive ? " timeline-node-dot--active" : ""
                   }`}
                 />
               </div>

@@ -1283,6 +1283,71 @@ html.dark .timeline-card--expanded .timeline-card-chevron {
 }
 
 
+/* ── TIMELINE HOVER PREVIEW PANEL ───────────────────────── */
+/* Absolute wrapper — floats above layout, does not push rows down */
+.timeline-preview-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+}
+
+.timeline-preview-panel {
+  background: var(--clr-bg-alt);
+  border: 2px solid var(--clr-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 1.25rem 1.5rem;
+  text-align: left;
+}
+
+html.dark .timeline-preview-panel {
+  background: var(--clr-surface-2);
+  border-color: var(--clr-primary);
+  box-shadow: var(--shadow-lg), 0 0 14px rgba(255, 211, 78, 0.08);
+}
+
+/* Truncated overview — shows ~4 lines max */
+.timeline-preview-overview {
+  font-size: 0.9rem;
+  color: var(--clr-text-2);
+  line-height: 1.75;
+  margin-bottom: 0.75rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+
+/* Truncated role — shows ~2 lines max */
+.timeline-preview-role {
+  font-size: 0.85rem;
+  color: var(--clr-text-2);
+  line-height: 1.65;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+/* "Click to expand" hint */
+.timeline-preview-hint {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--clr-text-3);
+  opacity: 0.65;
+}
+
+html.dark .timeline-preview-hint {
+  color: var(--clr-primary);
+  opacity: 0.55;
+}
+
 /* ── TIMELINE DETAIL PANEL ───────────────────────────────── */
 .timeline-detail-panel {
   background: var(--clr-bg-alt);
