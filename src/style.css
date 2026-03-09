@@ -1079,51 +1079,48 @@ html.dark .timeline::before {
   box-shadow: 0 0 8px rgba(238, 69, 126, 0.15);
 }
 
-/* Each item row */
-.timeline-item {
-  display: flex;
-  align-items: flex-start;
-  position: relative;
-  width: 50%;
-  padding: 0 2.5rem;
+/* Each timeline row: 3-column grid [left | centre marker | right] */
+.timeline-row {
+  display: grid;
+  grid-template-columns: 1fr 1.5rem 1fr;
+  align-items: start;
   margin-bottom: 2.5rem;
 }
 
-.timeline-item:last-child {
+.timeline-row:last-child {
   margin-bottom: 0;
 }
 
-/* Left-side items: push to right half, align card to the left of centre */
-.timeline-item--left {
-  margin-left: 0;
-  margin-right: auto;
-  justify-content: flex-end;
+/* Columns */
+.tl-col {
+  min-width: 0;
+}
+
+.tl-col--left {
+  padding-right: 2.5rem;
+}
+
+.tl-col--right {
+  padding-left: 2.5rem;
+}
+
+/* Card text alignment by side */
+.timeline-row--left .tl-col--left {
   text-align: right;
 }
 
-/* Right-side items: push to left half, align card to the right of centre */
-.timeline-item--right {
-  margin-left: auto;
-  margin-right: 0;
-  justify-content: flex-start;
+.timeline-row--right .tl-col--right {
   text-align: left;
 }
 
 /* ── TIMELINE NODE (dot on the line) ───────────────────── */
-.timeline-node {
-  position: absolute;
-  top: 1.1rem;
-  width: 1rem;
-  height: 1rem;
+/* Centre column containing the dot on the vertical line */
+.tl-center {
+  display: flex;
+  justify-content: center;
+  padding-top: 1.1rem;
+  position: relative;
   z-index: 2;
-}
-
-.timeline-item--left .timeline-node {
-  right: -0.5rem;
-}
-
-.timeline-item--right .timeline-node {
-  left: -0.5rem;
 }
 
 .timeline-node-dot {
@@ -1213,11 +1210,11 @@ html.dark .timeline-year {
   gap: 0.4rem;
 }
 
-.timeline-item--left .timeline-tags {
+.timeline-row--left .tl-col--left .timeline-tags {
   justify-content: flex-end;
 }
 
-.timeline-item--right .timeline-tags {
+.timeline-row--right .tl-col--right .timeline-tags {
   justify-content: flex-start;
 }
 
@@ -1242,10 +1239,7 @@ html.dark .timeline-card--expanded {
   border-color: var(--clr-primary);
 }
 
-/* Tighten gap below card when it has an open detail panel */
-.timeline-item--expanded {
-  margin-bottom: 0.75rem;
-}
+
 
 /* ── TIMELINE NODE — ACTIVE STATE ────────────────────────── */
 .timeline-node-dot--active {
@@ -1288,23 +1282,6 @@ html.dark .timeline-card--expanded .timeline-card-chevron {
   color: var(--clr-primary);
 }
 
-/* ── TIMELINE DETAIL ROW ─────────────────────────────────── */
-/* Full-width block that positions the panel on the opposite side */
-.timeline-detail-row {
-  margin-bottom: 2.5rem;
-}
-
-/* Panel on the RIGHT (paired with a left-side card) */
-.timeline-detail-row--right {
-  padding-left: calc(50% + 2.5rem);
-  padding-right: 2.5rem;
-}
-
-/* Panel on the LEFT (paired with a right-side card) */
-.timeline-detail-row--left {
-  padding-left: 2.5rem;
-  padding-right: calc(50% + 2.5rem);
-}
 
 /* ── TIMELINE DETAIL PANEL ───────────────────────────────── */
 .timeline-detail-panel {
@@ -1488,39 +1465,42 @@ html.dark .timeline-detail-btn:hover {
     transform: none;
   }
 
-  .timeline-item,
-  .timeline-item--left,
-  .timeline-item--right {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+  .timeline-row {
+    display: flex;
+    flex-direction: column;
     padding-left: 2.5rem;
-    padding-right: 0;
-    justify-content: flex-start;
+    position: relative;
+  }
+
+  .tl-col--left,
+  .tl-col--right {
+    width: 100%;
+    padding: 0;
     text-align: left;
   }
 
-  .timeline-item--left .timeline-node,
-  .timeline-item--right .timeline-node {
-    left: 0;
-    right: auto;
+  /* For right rows: bring card (tl-col--right) before panel (tl-col--left) */
+  .timeline-row--right .tl-col--right {
+    order: -1;
   }
 
-  .timeline-item--left .timeline-tags,
-  .timeline-item--right .timeline-tags {
+  .tl-center {
+    position: absolute;
+    left: 0;
+    top: 1.1rem;
+    padding: 0;
+    display: block;
+  }
+
+  /* All tags left-aligned on mobile */
+  .timeline-row--left .tl-col--left .timeline-tags,
+  .timeline-row--right .tl-col--right .timeline-tags {
     justify-content: flex-start;
   }
 
-  /* Detail row: collapse to single column below the card */
-  .timeline-detail-row--right,
-  .timeline-detail-row--left {
-    padding-left: 2.5rem;
-    padding-right: 0;
-  }
-
-  /* Preserve tighter gap even at this breakpoint */
-  .timeline-item--expanded {
-    margin-bottom: 0.75rem;
+  /* Space between card and detail panel when stacked */
+  .timeline-detail-panel {
+    margin-top: 0.75rem;
   }
 }
 
@@ -1556,9 +1536,7 @@ html.dark .timeline-detail-btn:hover {
   .hamburger-menu .dark-mode-toggle { margin-right: 0 !important; }
 
   /* Timeline mobile tweaks */
-  .timeline-item,
-  .timeline-item--left,
-  .timeline-item--right {
+  .timeline-row {
     padding-left: 2rem;
     margin-bottom: 2rem;
   }
@@ -1575,13 +1553,6 @@ html.dark .timeline-detail-btn:hover {
     font-size: 0.85rem;
   }
 
-  /* Detail row tweaks at narrowest widths */
-  .timeline-detail-row--right,
-  .timeline-detail-row--left {
-    padding-left: 2rem;
-    padding-right: 0;
-  }
-
   .timeline-detail-panel {
     padding: 1.25rem;
   }
@@ -1589,11 +1560,6 @@ html.dark .timeline-detail-btn:hover {
   .timeline-detail-btn {
     font-size: 0.65rem;
     padding: 0.35rem 0.85rem;
-  }
-
-  /* Retain tightened gap below expanded card */
-  .timeline-item--expanded {
-    margin-bottom: 0.75rem;
   }
 }
 

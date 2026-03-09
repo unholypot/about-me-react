@@ -1,4 +1,4 @@
-import { useState, Fragment } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   fadeUp,
@@ -228,6 +228,7 @@ function DetailPanel({ entry }) {
 /* ── MAIN TIMELINE COMPONENT ────────────────────────────── */
 function Timeline() {
   const [expandedId, setExpandedId] = useState(null);
+  const [hoveredId, setHoveredId] = useState(null);
 
   const handleToggle = (title) =>
     setExpandedId((prev) => (prev === title ? null : title));
@@ -250,88 +251,94 @@ function Timeline() {
       <motion.div className="timeline" variants={fadeUp}>
         {timelineEntries.map((entry, index) => {
           const isLeft = index % 2 === 0;
-          const isExpanded = expandedId === entry.title;
+          const isLocked = expandedId === entry.title;
+          const isActive = isLocked || hoveredId === entry.title;
           const uid = `${entry.year}-${entry.title}`;
 
-          return (
-            <Fragment key={uid}>
-              {/* ── Card item ───────────────────────────── */}
-              <motion.div
-                className={`timeline-item ${
-                  isLeft ? "timeline-item--left" : "timeline-item--right"
-                }${isExpanded ? " timeline-item--expanded" : ""}`}
-                variants={staggerItem}
-              >
-                {/* Node / marker on the centre line */}
-                <div className="timeline-node">
-                  <span
-                    className={`timeline-node-dot${
-                      isExpanded ? " timeline-node-dot--active" : ""
-                    }`}
-                  />
-                </div>
-
-                {/* Clickable card */}
-                <div
-                  className={`timeline-card${
-                    isExpanded ? " timeline-card--expanded" : ""
-                  }`}
-                  role="button"
-                  tabIndex={0}
-                  aria-expanded={isExpanded}
-                  aria-label={`${entry.title} — ${isExpanded ? "collapse" : "expand"} details`}
-                  onClick={() => handleToggle(entry.title)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      handleToggle(entry.title);
-                    }
-                  }}
-                >
-                  <span className="timeline-year">{entry.year}</span>
-                  <h3 className="timeline-card-title">{entry.title}</h3>
-                  <p className="timeline-card-desc">{entry.description}</p>
-                  {entry.tags?.length > 0 && (
-                    <div className="timeline-tags">
-                      {entry.tags.map((tag) => (
-                        <span className="chip" key={tag}>
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                  <div className="timeline-card-expand-hint">
-                    <span
-                      className={`timeline-card-chevron${
-                        isExpanded ? " timeline-card-chevron--open" : ""
-                      }`}
-                    >
-                      {isExpanded ? "▲ Collapse" : "▼ View Details"}
+          const cardEl = (
+            <div
+              className={`timeline-card${isActive ? " timeline-card--expanded" : ""}`}
+              role="button"
+              tabIndex={0}
+              aria-expanded={isLocked}
+              aria-label={`${entry.title} — ${isLocked ? "collapse" : "expand"} details`}
+              onClick={() => handleToggle(entry.title)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  handleToggle(entry.title);
+                }
+              }}
+            >
+              <span className="timeline-year">{entry.year}</span>
+              <h3 className="timeline-card-title">{entry.title}</h3>
+              <p className="timeline-card-desc">{entry.description}</p>
+              {entry.tags?.length > 0 && (
+                <div className="timeline-tags">
+                  {entry.tags.map((tag) => (
+                    <span className="chip" key={tag}>
+                      {tag}
                     </span>
-                  </div>
+                  ))}
                 </div>
-              </motion.div>
+              )}
+              <div className="timeline-card-expand-hint">
+                <span
+                  className={`timeline-card-chevron${
+                    isActive ? " timeline-card-chevron--open" : ""
+                  }`}
+                >
+                  {isLocked ? "▲ Collapse" : "▼ View Details"}
+                </span>
+              </div>
+            </div>
+          );
 
-              {/* ── Detail panel (opposite side on desktop, below on mobile) ── */}
-              <AnimatePresence>
-                {isExpanded && (
-                  <motion.div
-                    key={`detail-${uid}`}
-                    className={`timeline-detail-row ${
-                      isLeft
-                        ? "timeline-detail-row--right"
-                        : "timeline-detail-row--left"
-                    }`}
-                    variants={panelVariants}
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit"
-                  >
-                    <DetailPanel entry={entry} />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </Fragment>
+          const panelEl = (
+            <AnimatePresence>
+              {isActive && (
+                <motion.div
+                  key={`detail-${uid}`}
+                  variants={panelVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                >
+                  <DetailPanel entry={entry} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          );
+
+          return (
+            <motion.div
+              key={uid}
+              className={`timeline-row${
+                isLeft ? " timeline-row--left" : " timeline-row--right"
+              }`}
+              variants={staggerItem}
+              onMouseEnter={() => setHoveredId(entry.title)}
+              onMouseLeave={() => setHoveredId(null)}
+            >
+              {/* Left column */}
+              <div className="tl-col tl-col--left">
+                {isLeft ? cardEl : panelEl}
+              </div>
+
+              {/* Center: timeline marker */}
+              <div className="tl-center">
+                <span
+                  className={`timeline-node-dot${
+                    isActive ? " timeline-node-dot--active" : ""
+                  }`}
+                />
+              </div>
+
+              {/* Right column */}
+              <div className="tl-col tl-col--right">
+                {isLeft ? panelEl : cardEl}
+              </div>
+            </motion.div>
           );
         })}
       </motion.div>
