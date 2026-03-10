@@ -8,6 +8,16 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Apply saved theme immediately to prevent flash.
+       Defaults to dark mode if no preference has been saved. -->
+  <script>
+    (function () {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'light') return;
+      document.documentElement.classList.add('dark');
+    })();
+  </script>
+
   <!-- Page Title -->
   <title>Allen Saji </title>
 

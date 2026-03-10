@@ -9,10 +9,10 @@ import Footer from "./components/Footer.jsx";
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
-    // Check localStorage first, then system preference
+    // Use saved preference; default to dark mode if none saved
     const saved = localStorage.getItem("theme");
     if (saved) return saved === "dark";
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return true;
   });
   const [menuOpen, setMenuOpen] = useState(false);
 
