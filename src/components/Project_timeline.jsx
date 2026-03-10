@@ -67,19 +67,20 @@ const timelineEntries = [
     year: "2025",
     title: "Honours Research",
     description:
-      "Conducting research into advanced power electronics topologies and control strategies for renewable energy integration.",
-    tags: ["Research", "Power Electronics", "MATLAB"],
+      "Investigating the use of artificial intelligence and computer vision techniques to analyse bubble formation and behaviour in engineering systems. The research explores how machine learning models can be used to detect, track, and characterise bubbles from visual data for improved monitoring and analysis.",
+    tags: ["Research", "Computer Vision", "AI/ML"],
     overview:
-      "My Honours-year research investigates advanced DC-DC converter topologies and model predictive control (MPC) strategies for improved renewable energy grid integration. The work spans simulation, hardware validation, and a formal academic write-up.",
+      "This honours research project explores the application of AI and computer vision for analysing bubble dynamics in experimental systems. The aim is to develop algorithms capable of detecting bubbles, tracking their motion, and extracting meaningful physical parameters from visual data. The work will involve literature review, dataset preparation, model experimentation, and evaluation of different approaches for reliable bubble identification and analysis.",
     role:
-      "Independent researcher — conducting literature review, building and validating simulation models, and writing the final thesis under academic supervision.",
+      "Honours researcher – responsible for conducting literature review, designing the research methodology, developing AI-based detection models, analysing results, and documenting findings for the final thesis.",
     highlights: [
-      "Modelling multi-phase interleaved boost converters in MATLAB/Simulink",
-      "Implementing and tuning MPC algorithms for dynamic load conditions",
-      "Comparing topology performance across efficiency, ripple, and transient response metrics",
-    ],
-    outcome: "Ongoing — targeting journal submission by end of 2025.",
-    links: { github: null, liveDemo: null, report: null },
+    "Literature review on bubble detection and computer vision techniques (in progress)",
+    "Dataset exploration and preparation (planned)",
+    "Model development and experimentation (to be continued)"
+  ],
+    outcome: "Ongoing — research currently in early stages and progressing toward thesis completion.",
+
+  links: { github: null, liveDemo: null, report: null },
   },
   {
     year: "2024",
