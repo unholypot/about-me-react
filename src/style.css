@@ -83,11 +83,53 @@ html.dark {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
   scroll-behavior: smooth;
   overflow-x: clip;
+}
+
+/* ── MOBILE INTERACTION ─────────────────────────────────── */
+/* Detected interactive elements: buttons, links, theme toggle,
+   hamburger icon, nav links, project cards, tag/detail buttons,
+   and any element with role="button" or an onclick. */
+button,
+a,
+[role="button"],
+.btn,
+.dark-mode-toggle,
+.hamburger-icon,
+.nav-links a,
+.menu-links a,
+.timeline-card,
+.timeline-detail-btn {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+button:active,
+a:active,
+[role="button"]:active,
+.btn:active,
+.dark-mode-toggle:active,
+.hamburger-icon:active,
+.nav-links a:active,
+.menu-links a:active,
+.timeline-card:active,
+.timeline-detail-btn:active {
+  transform: scale(0.98);
+  transition: transform 0.08s ease;
+}
+
+button:focus-visible,
+[role="button"]:focus-visible,
+.btn:focus-visible,
+.hamburger-icon:focus-visible,
+.timeline-card:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
 body {
