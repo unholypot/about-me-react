@@ -413,7 +413,7 @@ html.dark .section__text__p1 {
 /* ── TITLE ───────────────────────────────────────────────── */
 .title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
   font-weight: 700;
   color: var(--clr-text);
   text-align: center;
@@ -1606,7 +1606,7 @@ html.dark .timeline-detail-btn:hover {
   }
   .section__pic-container { width: auto; height: 46vw; justify-content: center; }
   .section__text__p2 { font-size: 1rem; }
-  .title { font-size: 2rem; }
+  .title { font-size: 2.8rem; }
   .text-container { text-align: start; }
   #hamburger-nav { padding: 0.75rem 1rem; }
   .hamburger-menu { gap: 0.5rem; }
@@ -1656,4 +1656,22 @@ html.dark .timeline-detail-btn:hover {
 #projects,
 #contact {
   scroll-margin-top: var(--nav-height);
+}
+
+/* ── TYPEWRITER CURSOR ───────────────────────────────────── */
+.typewriter-cursor {
+  display: inline-block;
+  margin-left: 1px;
+  color: inherit;
+  font-weight: inherit;
+  opacity: 1;
+}
+
+.typewriter-cursor--blink {
+  animation: cursor-blink 0.8s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }

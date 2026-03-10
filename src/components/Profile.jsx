@@ -1,22 +1,33 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   fadeUp,
-  scaleIn,
   staggerContainer,
   staggerItem,
 } from "../utils/motion";
 
+const FULL_NAME = "Allen Saji";
+const TYPING_SPEED = 90; // ms per character
+
 function Profile() {
+  const [displayed, setDisplayed] = useState("");
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    let i = 0;
+    const id = setInterval(() => {
+      i++;
+      setDisplayed(FULL_NAME.slice(0, i));
+      if (i === FULL_NAME.length) {
+        clearInterval(id);
+        setDone(true);
+      }
+    }, TYPING_SPEED);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <section id="profile">
-      <motion.div
-        className="section__pic-container"
-        variants={scaleIn}
-        initial="hidden"
-        animate="visible"
-      >
-        <img src="/assets/profile-pic.jpg" alt="Allen Saji profile picture" />
-      </motion.div>
       <motion.div
         className="section__text"
         variants={staggerContainer(0.1)}
@@ -27,7 +38,13 @@ function Profile() {
           Hello, I'm
         </motion.p>
         <motion.h1 className="title" variants={fadeUp}>
-          Allen Saji
+          {displayed}
+          <span
+            className={`typewriter-cursor${
+              done ? " typewriter-cursor--blink" : ""
+            }`}
+          >|
+          </span>
         </motion.h1>
         <motion.p className="section__text__p2" variants={fadeUp}>
           Computer &amp; Software Systems Engineering Student
