@@ -1668,7 +1668,7 @@ html.dark .timeline-detail-btn:hover {
 }
 
 .typewriter-cursor--blink {
-  animation: cursor-blink 0.8s step-end infinite;
+  animation: cursor-blink 1s step-end infinite;
 }
 
 @keyframes cursor-blink {
