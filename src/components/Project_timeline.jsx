@@ -99,7 +99,7 @@ const timelineEntries = [
       "Semantic, accessible HTML and keyboard-navigable navigation",
     ],
     outcome: "Live and continuously updated. Used as a primary professional presence.",
-    links: { github: null, liveDemo: null, report: null },
+    links: { github: "https://github.com/unholypot/personal-website", liveDemo: "https://allensaji.com", report: null },
   },
   {
     year: "2024",
