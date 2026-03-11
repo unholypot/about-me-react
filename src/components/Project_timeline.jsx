@@ -105,20 +105,22 @@ const timelineEntries = [
     year: "2024",
     title: "Solar Inverter Analysis",
     description:
-      "Reverse-engineered a grid-connected Solar PV inverter. Simulated MPPT DC-DC boost converter using LTspice & MATLAB.",
-    tags: ["LTspice", "MATLAB", "Power Systems"],
+      "Reverse-engineered a commercial grid-connected solar PV inverter and modelled its MPPT DC-DC boost converter in LTspice and MATLAB to analyse efficiency, ripple behaviour, and converter performance.",
+    tags: ["LTspice", "MATLAB", "Power Electronics", "Simulation"],
     overview:
-      "A deep-dive engineering analysis of a commercial grid-connected solar PV inverter, including circuit-level reverse engineering, simulation, and efficiency benchmarking of the MPPT boost converter stage.",
+      "A detailed engineering analysis of a commercial grid-connected solar PV inverter. Working in a two-person team, we reverse-engineered the inverter’s internal architecture and analysed its power conversion stages. The project focused on modelling the MPPT DC-DC boost converter, investigating the DC-AC single-phase full-bridge inverter stage, and evaluating converter efficiency, switching behaviour, and harmonic performance using simulation tools.",
     role:
-      "Lead engineer — responsible for hardware disassembly, schematic reconstruction, and all simulation work.",
+      "Power electronics analysis and simulation — contributed to inverter architecture reverse engineering, LTspice circuit modelling, MATLAB-based analysis, and technical report development.",
+
     highlights: [
-      "Reverse-engineered boost converter stage from PCB traces and component values",
-      "Simulated Perturb & Observe (P&O) MPPT algorithm in MATLAB",
-      "Verified simulation results against measured inverter performance data",
-      "LTspice transient analysis for switching losses and efficiency curves",
+    "Reverse-engineered internal inverter architecture from hardware inspection and documentation",
+    "Modelled and simulated the MPPT DC-DC boost converter using LTspice",
+    "Investigated the single-phase full-bridge DC–AC inverter stage and switching strategies",
+    "Evaluated converter efficiency, ripple characteristics, and harmonic behaviour",
+    "Produced a technical report analysing converter topologies, power factor, and EMI considerations"
     ],
     outcome:
-      "Achieved simulated efficiency within 3% of datasheet specifications, validating the reverse-engineered model.",
+       "Developed validated simulation models of the inverter’s boost converter stage and produced a comprehensive engineering report analysing inverter design, control strategies, and performance trade-offs.",
     links: { github: null, liveDemo: null, report: null },
   },
   {
@@ -159,7 +161,7 @@ const timelineEntries = [
     ],
     outcome:
       "Successfully found optimal routes across all provided test maps, including edge cases with enclosed zones.",
-    links: { github: null, liveDemo: null, report: null },
+    links: { github: "https://github.com/unholypot/CAB201-Project", liveDemo: null, report: null },
   },
 ];
 
@@ -251,7 +253,7 @@ function DetailPanel({ entry }) {
         )}
         {!hasLinks && (
           <span className="timeline-detail-btn timeline-detail-btn--muted">
-            ○ Links Coming Soon
+            No external links available
           </span>
         )}
       </div>
