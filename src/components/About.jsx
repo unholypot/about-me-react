@@ -66,8 +66,7 @@ function About() {
               C#, Python, LTspice, and MATLAB, I enjoy solving complex
               engineering problems — from simulating solar inverters to building
               multithreaded operating systems in C. I'm a quick learner who
-              thrives in collaborative, technically challenging environments. I
-              also love crabs 🦀.
+              thrives in collaborative, technically challenging environments. 
             </p>
           </motion.div>
         </div>
