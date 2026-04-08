@@ -124,7 +124,7 @@ const timelineEntries = [
     ],
     outcome:
       "A scalable, fault-tolerant cloud system demonstrating production-level architecture patterns including microservices, queue-based processing, and auto-scaling.",
-    links: { github: null, liveDemo: null, report: null },
+    links: { github: "https://github.com/unholypot/BG_ERASER", liveDemo: null, report: null },
   },
   {
     year: "2025",
