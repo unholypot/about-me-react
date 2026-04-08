@@ -52,7 +52,7 @@ function About() {
                 <br />
                 Software Systems — QUT
                 <br />
-                <em>Expected 02/2027</em>
+                <em>Expected 12/2026</em>
               </p>
             </motion.div>
           </motion.div>
