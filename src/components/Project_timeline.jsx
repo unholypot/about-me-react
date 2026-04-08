@@ -64,7 +64,7 @@ const panelVariants = {
    ────────────────────────────────────────────────────────── */
 const timelineEntries = [
   {
-    year: "2025",
+    year: "2026",
     title: "Honours Research",
     description:
       "Investigating the use of artificial intelligence and computer vision techniques to analyse bubble formation and behaviour in engineering systems. The research explores how machine learning models can be used to detect, track, and characterise bubbles from visual data for improved monitoring and analysis.",
@@ -83,7 +83,7 @@ const timelineEntries = [
   links: { github: null, liveDemo: null, report: null },
   },
   {
-    year: "2024",
+    year: "2026",
     title: "Portfolio Website",
     description:
       "Designed and built a personal portfolio using React and Vite with a custom retro theme, dark mode, and scroll-based animations.",
@@ -102,7 +102,32 @@ const timelineEntries = [
     links: { github: "https://github.com/unholypot/personal-website", liveDemo: "https://allensaji.com", report: null },
   },
   {
-    year: "2024",
+    year: "2025",
+    title: "Cloud Background Removal System",
+    description:
+      "Built a scalable AWS-based image processing platform using microservices, asynchronous queues, and auto-scaling infrastructure.",
+    tags: ["AWS", "ECS", "SQS", "RDS", "S3", "Cognito"],
+    overview:
+      "A cloud-native background removal platform designed with a microservices architecture, supporting asynchronous processing, secure user authentication, and dynamic auto-scaling on AWS.",
+    role:
+      "Designed and developed the full cloud architecture, including microservices, infrastructure configuration, and deployment across AWS services.",
+    highlights: [
+      "Designed a distributed microservices system using ECS Fargate for API and worker services",
+      "Implemented asynchronous job processing using SQS with Dead Letter Queues for fault tolerance",
+      "Built secure authentication using AWS Cognito with email verification",
+      "Integrated PostgreSQL (RDS) for user data and image metadata persistence",
+      "Stored and served processed images via S3 using pre-signed URLs",
+      "Configured Application Load Balancer with HTTPS (ACM) and path-based routing",
+      "Implemented auto-scaling (1-3 instances) based on CPU utilization",
+      "Used CloudFront and Route 53 for global delivery and DNS routing",
+      "Designed system for scalability up to thousands of concurrent users",
+    ],
+    outcome:
+      "A scalable, fault-tolerant cloud system demonstrating production-level architecture patterns including microservices, queue-based processing, and auto-scaling.",
+    links: { github: null, liveDemo: null, report: null },
+  },
+  {
+    year: "2025",
     title: "Solar Inverter Analysis",
     description:
       "Reverse-engineered a commercial grid-connected solar PV inverter and modelled its MPPT DC-DC boost converter in LTspice and MATLAB to analyse efficiency, ripple behaviour, and converter performance.",
@@ -124,7 +149,7 @@ const timelineEntries = [
     links: { github: null, liveDemo: null, report: null },
   },
   {
-    year: "2023",
+    year: "2024",
     title: "Elevator System Simulation",
     description:
       "Built a multi-component elevator simulator in C for Linux using POSIX shared memory, multithreading, and TCP/IP sockets.",
