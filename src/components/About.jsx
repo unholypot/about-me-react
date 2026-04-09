@@ -59,7 +59,7 @@ function About() {
           <motion.div className="text-container" variants={fadeUp}>
             <p>
               I'm a Computer and Software Systems Engineering student at
-              Queensland University of Technology (Dean's List), minoring in
+              Queensland University of Technology, minoring in
               Advanced Electrical Engineering and Robotics &amp; Embedded
               Systems. I'm passionate about software development, power
               electronics, and embedded systems. With hands-on experience in C,

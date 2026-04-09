@@ -52,7 +52,7 @@
   --transition: 220ms var(--ease-retro);
 
   /* Scroll offset — matches sticky nav height */
-  --nav-height: 17vh;
+  --nav-height: 15vh;
 }
 
 /* ── DARK MODE TOKENS ────────────────────────────────────── */
@@ -197,7 +197,7 @@ nav, .nav-links {
 nav {
   justify-content: space-around;
   align-items: center;
-  height: 17vh;
+  height: 15vh;
   background: var(--clr-nav-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);

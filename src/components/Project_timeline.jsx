@@ -105,25 +105,21 @@ const timelineEntries = [
     year: "2025",
     title: "Cloud Background Removal System",
     description:
-      "Built a scalable AWS-based image processing platform using microservices, asynchronous queues, and auto-scaling infrastructure.",
-    tags: ["AWS", "ECS", "SQS", "RDS", "S3", "Cognito"],
+      "A cloud-native background removal platform built on AWS as two independent microservices — a stateless API tier and an ML processing tier — connected by an asynchronous queue pipeline with retry logic and fault isolation.",
+    tags: ["AWS", "ECS Fargate", "SQS", "Node.js", "Docker", "PostgreSQL"],
     overview:
-      "A cloud-native background removal platform designed with a microservices architecture, supporting asynchronous processing, secure user authentication, and dynamic auto-scaling on AWS.",
+      "A full-stack cloud project built as part of CAB432 Cloud Computing at QUT, where I wanted to explore and implement an application starting from scratch using the full range of available AWS services. The result is a background removal service split across two independent containerised services.",
     role:
-      "Designed and developed the full cloud architecture, including microservices, infrastructure configuration, and deployment across AWS services.",
+      "Sole developer responsible for the architecture, async pipeline, ML integration, and full AWS deployment across EC2 and ECS Fargate.",
     highlights: [
-      "Designed a distributed microservices system using ECS Fargate for API and worker services",
-      "Implemented asynchronous job processing using SQS with Dead Letter Queues for fault tolerance",
-      "Built secure authentication using AWS Cognito with email verification",
-      "Integrated PostgreSQL (RDS) for user data and image metadata persistence",
-      "Stored and served processed images via S3 using pre-signed URLs",
-      "Configured Application Load Balancer with HTTPS (ACM) and path-based routing",
-      "Implemented auto-scaling (1-3 instances) based on CPU utilization",
-      "Used CloudFront and Route 53 for global delivery and DNS routing",
-      "Designed system for scalability up to thousands of concurrent users",
+      "Split the platform into two independent containerised services, a stateless API tier and an ML processing tier each with its own ECS Fargate task definition and resources tuned to its workload",
+      "Built an asynchronous SQS pipeline to decouple user uploads from ML inference, so the API returns immediately while workers pull jobs independently; implemented retry logic with a Dead Letter Queue to isolate failing jobs after three attempts",
+      "Integrated a neural network background removal model into the processor service, with job status tracked through PostgreSQL on RDS so the frontend can poll for completion without holding open connections to the processing tier",
+      "Secured the platform with AWS Cognito authentication and served all images through S3 pre-signed URLs, so image data flows directly between the browser and S3 without ever touching the API servers — keeping the compute tier stateless and horizontally scalable",
+      "Deployed the frontend on EC2 and the backend services behind an Application Load Balancer with HTTPS and a custom domain, with ECS auto-scaling policies driving task count based on CPU utilisation",
     ],
     outcome:
-      "A scalable, fault-tolerant cloud system demonstrating production-level architecture patterns including microservices, queue-based processing, and auto-scaling.",
+      "A working distributed system that handled the full pipeline end-to-end and gave me hands-on experience with production AWS architecture and queue-based processing patterns.",
     links: { github: "https://github.com/unholypot/BG_ERASER", liveDemo: null, report: null },
   },
   {
@@ -194,7 +190,7 @@ const timelineEntries = [
 function PreviewPanel({ entry }) {
   return (
     <div className="timeline-preview-panel">
-      <span className="timeline-detail-label">◈ case study</span>
+      <h4 className="timeline-detail-section-title">Overview</h4>
       <p className="timeline-preview-overview">{entry.overview}</p>
       {entry.role && (
         <div className="timeline-detail-section">
@@ -214,7 +210,7 @@ function DetailPanel({ entry }) {
 
   return (
     <div className="timeline-detail-panel">
-      <span className="timeline-detail-label">◈ case study</span>
+      <h4 className="timeline-detail-section-title">Overview</h4>
 
       {entry.overview && (
         <p className="timeline-detail-overview">{entry.overview}</p>
