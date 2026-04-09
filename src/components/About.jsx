@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import {
   fadeUp,
   staggerContainer,
-  staggerItem,
   defaultViewport,
 } from "../utils/motion";
 
@@ -23,50 +22,12 @@ function About() {
       </motion.h1>
       <div className="section-container">
         <div className="about-details-container">
-          <motion.div
-            className="about-containers"
-            variants={staggerContainer(0.15)}
-          >
-            <motion.div className="details-container" variants={staggerItem}>
-              <img
-                src="/assets/experience.png"
-                alt="Experience icon"
-                className="icon"
-              />
-              <h3>Experience</h3>
-              <p>
-                Warehouse Dispatcher
-                <br />
-                Retail Team Member @ COLES
-              </p>
-            </motion.div>
-            <motion.div className="details-container" variants={staggerItem}>
-              <img
-                src="/assets/education.png"
-                alt="Education icon"
-                className="icon"
-              />
-              <h3>Education</h3>
-              <p>
-                B.E. (Hons) Computer &amp;
-                <br />
-                Software Systems — QUT
-                <br />
-                <em>Expected 12/2026</em>
-              </p>
-            </motion.div>
-          </motion.div>
           <motion.div className="text-container" variants={fadeUp}>
             <p>
-              I'm a Computer and Software Systems Engineering student at
-              Queensland University of Technology, minoring in
-              Advanced Electrical Engineering and Robotics &amp; Embedded
-              Systems. I'm passionate about software development, power
-              electronics, and embedded systems. With hands-on experience in C,
-              C#, Python, LTspice, and MATLAB, I enjoy solving complex
-              engineering problems — from simulating solar inverters to building
-              multithreaded operating systems in C. I'm a quick learner who
-              thrives in collaborative, technically challenging environments. 
+              I'm a final-year engineering student with one foot in software and the other in electrical. I like the parts of engineering where those two worlds overlap, and most of my best projects live there. I also like keeping up with the latest tech and the way the AI space keeps shifting week to week.
+            </p>
+            <p>
+              When I'm not studying or building things, I'm probably at Coles, at the gym, gaming, or somewhere on the internet trying to figure out how to make this website a little weirder.
             </p>
           </motion.div>
         </div>
