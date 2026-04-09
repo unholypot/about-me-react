@@ -86,19 +86,19 @@ const timelineEntries = [
     year: "2026",
     title: "Portfolio Website",
     description:
-      "Designed and built a personal portfolio using React and Vite with a custom retro theme, dark mode, and scroll-based animations.",
-    tags: ["React", "Vite", "CSS", "Framer Motion"],
+      "A fully custom portfolio site with a retro-inspired design system and an interactive project timeline that adapts to how you're browsing — built from scratch with no UI framework.",
+    tags: ["React", "Vite", "Framer Motion", "Custom CSS"],
     overview:
-      "A fully custom personal portfolio site built from scratch, featuring a warm retro design system, dark/light mode, keyboard accessibility, and Framer Motion scroll animations — all without a UI framework.",
+      "The site you're reading right now. I wanted a portfolio that didn't look like every other Tailwind templates, so I built this one from the ground up. The goal was to make something that felt personal, loaded fast, and actually showed off the kind of frontend work I enjoy doing.",
     role:
-      "Sole designer and developer — responsible for the design system, responsive layout, component architecture, and deployment.",
+      "Sole designer and developer. I owned every decision, from the design language and component architecture to the timeline interaction model, theming system, and deployment setup.",
     highlights: [
-      "Custom CSS design tokens for consistent theming across light and dark modes",
-      "Scroll-triggered animations using Framer Motion with reduced-motion support",
-      "Fully responsive from mobile to widescreen without a CSS framework",
-      "Semantic, accessible HTML and keyboard-navigable navigation",
+      "Built a custom CSS design-token system powering synchronized light and dark themes, with a pre-hydration script that applies the saved theme before React mounts so there's no flash of wrong theme on page load",
+      "Engineered this project timeline component with distinct desktop and mobile interaction models, click-to-expand panels with hover previews on desktop, independent tap-to-toggle cards on mobile — that adapt seamlessly as the viewport changes",
+      "Built a shared animation system on top of Framer Motion for scroll reveals, staggered transitions, and panel animations, with full support for users who prefer reduced motion",
     ],
-    outcome: "Live and continuously updated. Used as a primary professional presence.",
+    outcome:
+      "Live at allensaji.com and continuously updated as I develop new projects. It's my primary presence online and the place I point recruiters and collaborators to first.",
     links: { github: "https://github.com/unholypot/personal-website", liveDemo: "https://allensaji.com", report: null },
   },
   {
@@ -130,22 +130,22 @@ const timelineEntries = [
     year: "2025",
     title: "Solar Inverter Analysis",
     description:
-      "Reverse-engineered a commercial grid-connected solar PV inverter and modelled its MPPT DC-DC boost converter in LTspice and MATLAB to analyse efficiency, ripple behaviour, and converter performance.",
+      "Reverse-engineered a commercial 5 kW grid-tied solar PV inverter and modelled both its DC-DC boost converter and single-phase full-bridge DC-AC stage in LTspice and MATLAB to analyse efficiency, ripple behaviour, and switching performance.",
     tags: ["LTspice", "MATLAB", "Power Electronics", "Simulation"],
     overview:
-      "A detailed engineering analysis of a commercial grid-connected solar PV inverter. Working in a two-person team, we reverse-engineered the inverter’s internal architecture and analysed its power conversion stages. The project focused on modelling the MPPT DC-DC boost converter, investigating the DC-AC single-phase full-bridge inverter stage, and evaluating converter efficiency, switching behaviour, and harmonic performance using simulation tools.",
+      "A detailed engineering analysis of a commercial 5 kW grid-tied solar PV inverter. Working with a partner, we reverse-engineered the inverter's internal architecture from physical measurements and datasheet specifications, then reconstructed and simulated both of its power conversion stages. The project focused on modelling the DC-DC boost converter, designing the single-phase full-bridge DC-AC inverter stage, and evaluating converter efficiency, switching behaviour, and output waveform quality using simulation tools.",
     role:
-      "Power electronics analysis and simulation — contributed to inverter architecture reverse engineering, LTspice circuit modelling, MATLAB-based analysis, and technical report development.",
+      "Power electronics analysis and simulation — contributed to inverter architecture reverse engineering, LTspice circuit modelling, MATLAB-based analysis, and design of efficiency improvements.",
 
     highlights: [
-    "Reverse-engineered internal inverter architecture from hardware inspection and documentation",
-    "Modelled and simulated the MPPT DC-DC boost converter using LTspice",
-    "Investigated the single-phase full-bridge DC–AC inverter stage and switching strategies",
-    "Evaluated converter efficiency, ripple characteristics, and harmonic behaviour",
-    "Produced a technical report analysing converter topologies, power factor, and EMI considerations"
+    "Reverse-engineered the internal architecture of a commercial 5 kW grid-tied PV inverter from physical measurements and datasheet specifications",
+    "Modelled the DC-DC boost converter in LTspice and MATLAB, validating theoretical ripple and duty cycle calculations against simulation",
+    "Designed the full-bridge inverter stage using sinusoidal pulse-width modulation to push switching noise above the audible range, selecting a suitably rated IGBT and sizing the output filter to meet grid voltage and waveform quality requirements",
+    "Estimated stage efficiency after accounting for inductor, switching, and capacitor losses",
+    "Proposed a snubber circuit to significantly reduce switching losses in the boost MOSFET, and identified synchronous rectification as a further efficiency improvement path"
     ],
     outcome:
-       "Developed validated simulation models of the inverter’s boost converter stage and produced a comprehensive engineering report analysing inverter design, control strategies, and performance trade-offs.",
+       "Developed validated simulation models of both the boost converter and full-bridge inverter stages, and identified concrete design improvements — including a snubber circuit and synchronous rectification — to reduce switching losses and improve overall efficiency.",
     links: { github: null, liveDemo: null, report: null },
   },
   {
