@@ -66,7 +66,7 @@ function Profile() {
           <motion.button
             className="btn btn-color-2"
             variants={staggerItem}
-            onClick={() => window.open("https://unholypot.github.io/resume/Allen_Saji_Resume.pdf")}
+            onClick={() => window.open("https://unholypot.github.io/resume")}
           >
             Download CV
           </motion.button>
