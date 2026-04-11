@@ -47,6 +47,9 @@
   --radius-lg: 1.5rem;
   --radius-pill: 9999px;
 
+  /* On-accent text (warm off-white for text on primary/secondary backgrounds) */
+  --clr-on-accent: #FAF6F0;
+
   /* Motion */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -68,6 +71,9 @@ html.dark {
   --clr-text:      #F0E6D3;
   --clr-text-2:    #C4A882;
   --clr-text-3:    #8A6F9A;
+
+  /* Lifted surface for preview panels (slightly above --clr-surface-2) */
+  --clr-surface-3: #2D2050;
 
   --clr-nav-bg:    rgba(15, 10, 30, 0.9);
 
@@ -309,6 +315,12 @@ html.dark .nav-links a:hover {
   height: 22px;
   width: 28px;
   cursor: pointer;
+  /* Reset <button> styles */
+  background: none;
+  border: none;
+  padding: 0;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .hamburger-icon span {
@@ -331,7 +343,10 @@ html.dark .nav-links a:hover {
   min-width: 180px;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-in-out, box-shadow 0.3s ease, border-color 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: max-height 0.3s ease-in-out, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.2s ease, visibility 0s 0.2s;
 }
 
 .menu-links a {
@@ -364,6 +379,10 @@ html.dark .nav-links a:hover {
   max-height: 300px;
   border-color: var(--clr-border);
   box-shadow: var(--shadow-md);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: max-height 0.3s ease-in-out, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.2s ease, visibility 0s 0s;
 }
 
 .hamburger-icon.open span:first-child {
@@ -386,8 +405,8 @@ html.dark .nav-links a:hover {
   border: 2px solid var(--clr-border);
   box-shadow: var(--shadow-sm);
   border-radius: var(--radius-pill);
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 2.75rem;
+  height: 2.75rem;
   font-size: 1rem;
   cursor: pointer;
   display: flex;
@@ -564,21 +583,23 @@ html.dark .section__pic-container {
   cursor: default;
 }
 
-.status-pill:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--clr-primary);
+@media (hover: hover) {
+  .status-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--clr-primary);
+  }
+
+  html.dark .status-pill:hover {
+    border-color: var(--clr-primary);
+    box-shadow: var(--shadow-md);
+  }
 }
 
 html.dark .status-pill {
   background: var(--clr-surface-2);
   border-color: var(--clr-border);
   color: var(--clr-text);
-}
-
-html.dark .status-pill:hover {
-  border-color: var(--clr-primary);
-  box-shadow: var(--shadow-md);
 }
 
 .badge-dot {
@@ -619,21 +640,26 @@ html.dark .status-pill:hover {
   background: var(--clr-surface);
   border: 2px solid var(--clr-border);
   box-shadow: var(--shadow-sm);
-  transition: var(--transition);
 }
 
-#socials-container a:hover {
-  background: var(--clr-primary);
-  border-color: var(--clr-primary);
-  transform: translateY(-3px) rotate(5deg);
-  box-shadow: var(--shadow-md);
-  text-decoration: none;
-}
+@media (hover: hover) {
+  #socials-container a {
+    transition: var(--transition);
+  }
 
-html.dark #socials-container a:hover {
-  background: var(--clr-secondary);
-  border-color: var(--clr-secondary);
-  box-shadow: var(--shadow-md);
+  #socials-container a:hover {
+    background: var(--clr-primary);
+    border-color: var(--clr-primary);
+    transform: translateY(-3px) rotate(5deg);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+  }
+
+  html.dark #socials-container a:hover {
+    background: var(--clr-secondary);
+    border-color: var(--clr-secondary);
+    box-shadow: var(--shadow-md);
+  }
 }
 
 /* ── ICONS ───────────────────────────────────────────────── */
@@ -693,7 +719,7 @@ html.dark img[src*="dmode_black.png"] {
 .btn-color-1:hover {
   background: var(--clr-secondary);
   border-color: var(--clr-secondary);
-  color: #fff;
+  color: var(--clr-on-accent);
   transform: translate(-2px, -2px);
   box-shadow: var(--shadow-md);
 }
@@ -708,7 +734,7 @@ html.dark .btn-color-1 {
 html.dark .btn-color-1:hover {
   background: var(--clr-secondary);
   border-color: var(--clr-secondary);
-  color: #fff;
+  color: var(--clr-on-accent);
   box-shadow: var(--shadow-md);
 }
 
@@ -753,23 +779,28 @@ html.dark .btn-color-2:hover {
   border: 2px solid var(--clr-border);
   box-shadow: var(--shadow-md);
   text-align: center;
-  transition: transform 220ms var(--ease-out), box-shadow 220ms ease;
 }
 
-.details-container:hover {
-  transform: translate(-2px, -3px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--clr-primary);
+@media (hover: hover) {
+  .details-container {
+    transition: transform 220ms var(--ease-out), box-shadow 220ms ease;
+  }
+
+  .details-container:hover {
+    transform: translate(-2px, -3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--clr-primary);
+  }
+
+  html.dark .details-container:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--clr-primary);
+  }
 }
 
 html.dark .details-container {
   background: var(--clr-surface);
   border-color: var(--clr-border);
-}
-
-html.dark .details-container:hover {
-  box-shadow: var(--shadow-lg);
-  border-color: var(--clr-primary);
 }
 
 /* ── ABOUT SECTION ───────────────────────────────────────── */
@@ -1339,8 +1370,7 @@ html.dark .timeline-card--expanded .timeline-card-chevron {
 }
 
 html.dark .timeline-preview-panel {
-  /* Slightly lighter purple than --clr-surface-2 (#261C40) for a lifted feel */
-  background: #2D2050;
+  background: var(--clr-surface-3);
   border-color: var(--clr-primary);
   /* Soft ambient glow — no hard offset */
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.42), 0 0 16px rgba(255, 211, 78, 0.07);
@@ -1677,8 +1707,9 @@ html.dark .timeline-detail-btn:hover {
   }
 
   .timeline-detail-btn {
-    font-size: 0.65rem;
-    padding: 0.35rem 0.85rem;
+    font-size: 0.75rem;
+    padding: 0.6rem 1.1rem;
+    min-height: 44px;
   }
 }
 
@@ -1776,7 +1807,9 @@ html.dark .timeline-node-dot--active {
 
 /* ── SKILL ARTICLES — HOVER STATE ───────────────────────── */
 /* The individual skill items inside each card. Subtle right-
-   nudge on hover signals interactivity and provides rhythm. */
+   nudge on hover signals interactivity and provides rhythm.
+   Guarded by (hover: hover) so touch devices never see stuck
+   hover states after a tap. */
 .article-container {
   display: flex;
   flex-direction: column;
@@ -1787,28 +1820,32 @@ html.dark .timeline-node-dot--active {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  transition:
-    transform 200ms var(--ease-out),
-    color 200ms ease;
 }
 
-.article-container article:hover {
-  transform: translateX(4px);
-}
+@media (hover: hover) {
+  .article-container article {
+    transition:
+      transform 200ms var(--ease-out),
+      color 200ms ease;
+  }
 
-.article-container article:hover .skill-name {
-  color: var(--clr-secondary);
-}
+  .article-container article:hover {
+    transform: translateX(4px);
+  }
 
-html.dark .article-container article:hover .skill-name {
-  color: var(--clr-primary);
+  .article-container article:hover .skill-name {
+    color: var(--clr-secondary);
+  }
+
+  html.dark .article-container article:hover .skill-name {
+    color: var(--clr-primary);
+  }
 }
 
 .skill-name {
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--clr-text-2);
-  transition: color 200ms ease;
 }
 
 /* ── PREFERS-REDUCED-MOTION — CSS ANIMATIONS ────────────── */

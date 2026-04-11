@@ -58,9 +58,9 @@ function Experience() {
       <motion.p className="section__text__p1" variants={fadeUp}>
         Tools and technologies I use across software, embedded systems, and engineering projects.
       </motion.p>
-      <motion.h1 className="title" variants={fadeUp}>
+      <motion.h2 className="title" variants={fadeUp}>
         Skills &amp; Tools
-      </motion.h1>
+      </motion.h2>
       <motion.div className="skills-domains" variants={staggerContainer(0.12)}>
         {domains.map((domain) => (
           <motion.div key={domain.index} className="skills-domain" variants={fadeUp}>

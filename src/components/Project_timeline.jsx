@@ -366,9 +366,9 @@ function Timeline() {
       <motion.p className="section__text__p1" variants={fadeUp}>
         Browse My Recent
       </motion.p>
-      <motion.h1 className="title" variants={fadeUp}>
+      <motion.h2 className="title" variants={fadeUp}>
         Projects
-      </motion.h1>
+      </motion.h2>
 
       <motion.div className="timeline" variants={fadeUp}>
         {timelineEntries.map((entry, index) => {

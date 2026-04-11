@@ -49,20 +49,27 @@ function Navbar({toggleDarkMode, menuOpen, toggleMenu }) {
               className={"toggle-icon icon-dark-mode"}
             />
           </button>
-          <div
+          <button
             className={"hamburger-icon" + (menuOpen ? " open" : "")}
             onClick={toggleMenu}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
             <span></span>
             <span></span>
             <span></span>
-          </div>
-          <div className={"menu-links" + (menuOpen ? " open" : "")}>
+          </button>
+          <ul
+            id="mobile-menu"
+            className={"menu-links" + (menuOpen ? " open" : "")}
+            role="list"
+          >
             <li><a href="#about" onClick={toggleMenu}>About</a></li>
             <li><a href="#experience" onClick={toggleMenu}>Skills &amp; Tools</a></li>
             <li><a href="#projects" onClick={toggleMenu}>Projects</a></li>
             <li><a href="#contact" onClick={toggleMenu}>Contact</a></li>
-          </div>
+          </ul>
         </div>
       </nav>
     </>

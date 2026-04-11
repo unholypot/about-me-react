@@ -18,9 +18,9 @@ function Contact() {
       <motion.p className="section__text__p1" variants={fadeUp}>
         Get in Touch
       </motion.p>
-      <motion.h1 className="title" variants={fadeUp}>
+      <motion.h2 className="title" variants={fadeUp}>
         Contact Me
-      </motion.h1>
+      </motion.h2>
       <motion.div
         className="contact-info-upper-container"
         variants={staggerContainer(0.15)}

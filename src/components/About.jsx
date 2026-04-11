@@ -17,9 +17,9 @@ function About() {
       <motion.p className="section__text__p1" variants={fadeUp}>
         Get To Know More
       </motion.p>
-      <motion.h1 className="title" variants={fadeUp}>
+      <motion.h2 className="title" variants={fadeUp}>
         About Me
-      </motion.h1>
+      </motion.h2>
       <motion.div className="about-text" variants={fadeUp}>
         <p>
           I'm a final-year engineering student with one foot in software and the other in electrical. I like the parts of engineering where those two worlds overlap, and most of my best projects live there. I also like keeping up with the latest tech and the way the AI space keeps shifting week to week.
