@@ -771,34 +771,19 @@ html.dark .details-container:hover {
 }
 
 /* ── ABOUT SECTION ───────────────────────────────────────── */
-.about-containers {
-  gap: 2rem;
-  margin-bottom: 1.25rem;
-  margin-top: 1.25rem;
-}
-
-.about-details-container {
-  justify-content: center;
-  flex-direction: column;
-}
-
-.about-containers,
-.about-details-container {
+.about-text {
   display: flex;
-}
-
-.about-pic {
-  border-radius: var(--radius-lg);
-}
-
-.text-container {
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 68ch;
+  margin: 2.5rem auto 0;
   text-align: left;
 }
 
-.text-container p {
+.about-text p {
+  font-size: 1rem;
   color: var(--clr-text-2);
-  line-height: 1.8;
-  font-size: 0.95rem;
+  line-height: 1.85;
 }
 
 /* ── EXPERIENCE / SKILLS ─────────────────────────────────── */
@@ -807,84 +792,88 @@ html.dark .details-container:hover {
   padding-bottom: 2.5rem;
 }
 
-.skills-subtitle {
-  text-align: center;
-  font-size: 0.88rem;
-  color: var(--clr-text-3);
-  margin-top: 0.2rem;
-  margin-bottom: 1.25rem;
-  font-weight: 500;
+.skills-domains {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 2.5rem;
+  border: 2px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  background: var(--clr-surface);
 }
 
-.skills-grid {
-  gap: 1rem !important;
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
+html.dark .skills-domains {
+  background: var(--clr-surface);
+  border-color: var(--clr-border);
 }
 
-.skills-card {
-  padding: 1.25rem 1.5rem !important;
-  border-radius: var(--radius-md) !important;
-  border-width: 2px !important;
+.skills-domain {
+  padding: 1.75rem 2rem;
 }
 
-.experience-sub-title {
-  font-family: var(--font-display);
-  color: var(--clr-text-2);
-  font-weight: 700;
-  font-size: 0.95rem;
-  margin-bottom: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+.skills-domain + .skills-domain {
+  border-left: 2px solid var(--clr-border);
 }
 
-html.dark .experience-sub-title {
-  color: var(--clr-primary);
-}
-
-.experience-details-container {
+.skills-domain-header {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  align-items: baseline;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 2px solid var(--clr-border);
 }
 
-#experience .article-container {
+.skills-domain-index {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--clr-secondary);
+  flex-shrink: 0;
+}
+
+html.dark .skills-domain-index {
+  color: var(--clr-primary);
+  text-shadow: 0 0 8px rgba(255, 211, 78, 0.35);
+}
+
+.skills-domain-title {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--clr-text);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
 }
 
-#experience article {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  text-align: left;
-  gap: 0.35rem;
-}
-
-.skill-icon {
-  height: 1rem !important;
-  width: 1rem !important;
-  margin-top: 0.2rem;
-  flex-shrink: 0;
-  opacity: 0.5;
-  cursor: default;
-}
-
-.skill-name {
+.skills-list li {
   font-size: 0.9rem;
-  font-weight: 700;
-  margin: 0;
-  line-height: 1.3;
-  color: var(--clr-text);
+  font-weight: 500;
+  color: var(--clr-text-2);
+  line-height: 1.35;
+  padding-left: 1rem;
+  position: relative;
 }
 
-.skill-level {
-  font-size: 0.68rem;
-  font-weight: 500;
+.skills-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
   color: var(--clr-text-3);
-  margin: 0;
-  line-height: 1.3;
+  font-weight: 400;
 }
 
 /* ── CONTACT ─────────────────────────────────────────────── */
@@ -1555,7 +1544,6 @@ html.dark .timeline-detail-btn:hover {
 /* ── RESPONSIVE ──────────────────────────────────────────── */
 @media screen and (max-width: 1400px) {
   #profile { height: 83vh; margin-bottom: 2rem; }
-  .about-containers { flex-wrap: wrap; }
   #contact { height: fit-content; }
 }
 
@@ -1563,13 +1551,20 @@ html.dark .timeline-detail-btn:hover {
   :root { --nav-height: 5rem; }
   #desktop-nav { display: none; }
   #hamburger-nav { display: flex; }
-  #experience, .experience-details-container { margin-top: 2rem; }
+  #experience { margin-top: 2rem; }
   #profile, .section-container { display: block; }
   section, .section-container { height: fit-content; }
   section { margin: 0 5%; padding: 2.5rem 0; }
   .section__pic-container { width: 275px; height: 275px; margin: 0 auto 2rem; }
-  .about-containers { margin-top: 0; }
   section + section::before { display: none; }
+
+  /* Skills: stack to single column */
+  .skills-domains { grid-template-columns: 1fr; }
+  .skills-domain + .skills-domain {
+    border-left: none;
+    border-top: 2px solid var(--clr-border);
+  }
+
 
   /* Timeline → single-column, line on the left */
   .timeline::before {
@@ -1621,16 +1616,11 @@ html.dark .timeline-detail-btn:hover {
   #profile { height: fit-content; padding: 3rem 0; margin-bottom: 0; }
   article { font-size: 1rem; }
   footer nav { height: fit-content; margin-bottom: 1rem; }
-  .about-containers,
   .contact-info-upper-container,
   .btn-container { flex-wrap: wrap; }
-  .about-containers { flex-direction: column; }
-  .about-containers .details-container { width: 100%; }
   .contact-info-container { margin: 0; }
   .contact-info-container p, .nav-links li a { font-size: 1rem; }
-  .experience-sub-title { font-size: 1rem; }
-  #experience .article-container { align-items: center; }
-  #experience article { justify-content: center; }
+  .skills-domain { padding: 1.25rem 1.25rem; }
   .logo { font-size: 1.3rem; }
   .nav-links {
     flex-direction: column;
@@ -1640,7 +1630,6 @@ html.dark .timeline-detail-btn:hover {
   .section__pic-container { width: auto; height: 46vw; justify-content: center; }
   .section__text__p2 { font-size: 1rem; }
   .title { font-size: 2.8rem; }
-  .text-container { text-align: start; }
   #hamburger-nav { padding: 0.75rem 1rem; }
   .hamburger-menu { gap: 0.5rem; }
   .hamburger-menu .dark-mode-toggle { margin-right: 0 !important; }
@@ -1693,8 +1682,8 @@ html.dark .timeline-detail-btn:hover {
 
 /* ── DESKTOP TYPOGRAPHY REFINEMENT ───────────────────────── */
 @media (min-width: 1024px) {
-  .text-container p,
-  .contact-info-container p { font-size: 1.05rem; }
+  .about-text p,
+  .contact-info-container p { font-size: 1.05rem; line-height: 1.9; }
 
   .btn { font-size: 0.95rem; padding: 0.95rem 1.8rem; }
 
