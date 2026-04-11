@@ -4,7 +4,7 @@
    Palette: warm paper light / neon-glow dark
    ============================================================ */
 
-@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
 
 /* ── TOKENS ─────────────────────────────────────────────── */
 :root {
@@ -38,8 +38,8 @@
                radial-gradient(ellipse 50% 40% at 20% 80%, rgba(238,69,126,0.12) 0%, transparent 60%);
 
   /* Typography */
-  --font-display: 'Space Mono', monospace;
-  --font-body:    'DM Sans', sans-serif;
+  --font-display: 'Chakra Petch', sans-serif;
+  --font-body:    'Barlow', sans-serif;
 
   /* Radius */
   --radius-sm: 0.5rem;
@@ -186,7 +186,7 @@ a:focus-visible {
 h1, h2, h3 {
   font-family: var(--font-display);
   color: var(--clr-text);
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
 /* ── NAV ─────────────────────────────────────────────────── */
@@ -213,7 +213,7 @@ nav {
   font-size: 1.6rem;
   font-weight: 700;
   color: var(--clr-text);
-  letter-spacing: -0.02em;
+  letter-spacing: 0.04em;
   cursor: default;
   /* Chunky retro underline accent */
   position: relative;
@@ -439,8 +439,8 @@ section {
 .section__text__p1 {
   font-family: var(--font-display);
   font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--clr-secondary);
   margin-bottom: 0.4rem;
