@@ -48,8 +48,10 @@
   --radius-pill: 9999px;
 
   /* Motion */
-  --ease-retro: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --transition: 220ms var(--ease-retro);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.5, 0, 1, 0.5);
+  --transition: 220ms var(--ease-out);
 
   /* Scroll offset — matches sticky nav height */
   --nav-height: 15vh;
@@ -260,7 +262,7 @@ html.dark .logo::after {
   height: 2px;
   background: var(--clr-primary);
   transform: scaleX(0);
-  transition: transform 220ms var(--ease-retro);
+  transition: transform 220ms var(--ease-out);
 }
 
 .nav-links a:hover {
@@ -669,8 +671,8 @@ html.dark img[src*="dmode_black.png"] {
     background-color 220ms ease,
     border-color 220ms ease,
     color 220ms ease,
-    transform 220ms var(--ease-retro),
-    box-shadow 220ms var(--ease-retro);
+    transform 220ms var(--ease-out),
+    box-shadow 220ms var(--ease-out);
   padding: 0.8rem 1.4rem;
   width: 9rem;
   border-radius: var(--radius-pill);
@@ -751,7 +753,7 @@ html.dark .btn-color-2:hover {
   border: 2px solid var(--clr-border);
   box-shadow: var(--shadow-md);
   text-align: center;
-  transition: transform 220ms var(--ease-retro), box-shadow 220ms ease;
+  transition: transform 220ms var(--ease-out), box-shadow 220ms ease;
 }
 
 .details-container:hover {
@@ -1178,7 +1180,7 @@ html.dark .timeline-node-dot {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   padding: 1.5rem 1.75rem;
-  transition: transform 220ms var(--ease-retro), box-shadow 220ms ease, border-color 220ms ease;
+  transition: transform 220ms var(--ease-out), box-shadow 220ms ease, border-color 220ms ease;
   max-width: 100%;
 }
 
@@ -1714,4 +1716,111 @@ html.dark .timeline-detail-btn:hover {
 @keyframes cursor-blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
+}
+
+/* ── NAV ENTRANCE ────────────────────────────────────────── */
+/* Desktop nav slides down on page load — completes before the
+   hero stagger finishes so the two are never competing. */
+#desktop-nav {
+  animation: nav-enter 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes nav-enter {
+  from { opacity: 0; transform: translateY(-100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── TIMELINE NODE DOT — ACTIVE PULSE ───────────────────── */
+/* Pulses the glow ring while a panel is open. Communicates
+   "something is happening here" without being distracting. */
+.timeline-node-dot--active {
+  animation: dot-ring-pulse 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes dot-ring-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 2px var(--clr-border),
+      0 0 8px  rgba(238, 69, 126, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 0 2px var(--clr-border),
+      0 0 18px rgba(238, 69, 126, 0.65);
+  }
+}
+
+html.dark .timeline-node-dot--active {
+  animation: dot-ring-pulse-dark 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes dot-ring-pulse-dark {
+  0%, 100% {
+    box-shadow:
+      0 0 0 2px var(--clr-border),
+      0 0 12px rgba(255, 211, 78, 0.45);
+  }
+  50% {
+    box-shadow:
+      0 0 0 2px var(--clr-border),
+      0 0 24px rgba(255, 211, 78, 0.75);
+  }
+}
+
+/* ── TIMELINE CARD — EXPANDED LIFT ──────────────────────── */
+/* Expanded card gets a subtle lift so it reads as "raised"
+   relative to the collapsed siblings on the timeline. */
+.timeline-card--expanded {
+  transform: translate(-1px, -2px);
+}
+
+/* ── SKILL ARTICLES — HOVER STATE ───────────────────────── */
+/* The individual skill items inside each card. Subtle right-
+   nudge on hover signals interactivity and provides rhythm. */
+.article-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.article-container article {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition:
+    transform 200ms var(--ease-out),
+    color 200ms ease;
+}
+
+.article-container article:hover {
+  transform: translateX(4px);
+}
+
+.article-container article:hover .skill-name {
+  color: var(--clr-secondary);
+}
+
+html.dark .article-container article:hover .skill-name {
+  color: var(--clr-primary);
+}
+
+.skill-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--clr-text-2);
+  transition: color 200ms ease;
+}
+
+/* ── PREFERS-REDUCED-MOTION — CSS ANIMATIONS ────────────── */
+/* Framer Motion variants already check this in JS. This rule
+   catches CSS animations (pulse-dot, nav-enter, dot-ring-pulse,
+   cursor-blink, etc.) that run outside of Framer Motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

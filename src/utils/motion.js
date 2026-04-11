@@ -8,6 +8,12 @@ const prefersReducedMotion =
   typeof window !== "undefined" &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+/* ── EASING CURVES ─────────────────────────────────────
+   ease-out-quint: fast off the mark, graceful deceleration.
+   Feels decisive and confident — not robotic, not bouncy.
+   ─────────────────────────────────────────────────────── */
+const EASE_OUT = [0.22, 1, 0.36, 1];
+
 /* ── FADE UP (default section / element reveal) ───────── */
 export const fadeUp = {
   hidden: prefersReducedMotion
@@ -18,7 +24,7 @@ export const fadeUp = {
     : {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] },
+        transition: { duration: 0.55, ease: EASE_OUT },
       },
 };
 
@@ -29,7 +35,7 @@ export const fadeIn = {
     ? { opacity: 1, transition: { duration: 0.01 } }
     : {
         opacity: 1,
-        transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] },
+        transition: { duration: 0.5, ease: EASE_OUT },
       },
 };
 
@@ -53,7 +59,7 @@ export const staggerItem = {
     : {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
+        transition: { duration: 0.45, ease: EASE_OUT },
       },
 };
 
@@ -67,7 +73,7 @@ export const scaleIn = {
     : {
         opacity: 1,
         scale: 1,
-        transition: { duration: 0.55, ease: [0.25, 0.1, 0.25, 1] },
+        transition: { duration: 0.6, ease: EASE_OUT },
       },
 };
 
