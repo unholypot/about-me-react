@@ -200,7 +200,6 @@ function PreviewPanel({ entry }) {
           <p className="timeline-preview-role">{entry.role}</p>
         </div>
       )}
-      <span className="timeline-preview-hint">↓ Click to expand full case study</span>
     </div>
   );
 }

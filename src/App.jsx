@@ -38,7 +38,7 @@ function App() {
         menuOpen={menuOpen}
         toggleMenu={toggleMenu}
       />
-      <main id="main-content">
+      <main id="main-content" tabIndex="-1">
         <Profile />
         <About />
         <Experience />

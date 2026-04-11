@@ -1428,23 +1428,6 @@ html.dark .timeline-preview-panel {
   overflow: hidden;
 }
 
-/* "Click to expand" hint */
-.timeline-preview-hint {
-  display: inline-block;
-  margin-top: 0.75rem;
-  font-family: var(--font-display);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--clr-text-3);
-  opacity: 0.65;
-}
-
-html.dark .timeline-preview-hint {
-  color: var(--clr-primary);
-  opacity: 0.55;
-}
-
 /* ── TIMELINE DETAIL PANEL ───────────────────────────────── */
 .timeline-detail-panel {
   background: var(--clr-bg-alt);
