@@ -17,12 +17,12 @@ function Navbar({toggleDarkMode, menuOpen, toggleMenu }) {
           >
             <img
               src="/assets/dmode_black.png"
-              alt="Dark mode"
+              alt=""
               className={"toggle-icon icon-light-mode"}
             />
             <img
               src="/assets/dmode_white.png"
-              alt="Dark mode"
+              alt=""
               className={"toggle-icon icon-dark-mode"}
             />
           </button>
@@ -40,12 +40,12 @@ function Navbar({toggleDarkMode, menuOpen, toggleMenu }) {
           >
             <img
               src="/assets/dmode_black.png"
-              alt="Dark mode"
+              alt=""
               className={"toggle-icon icon-light-mode"}
             />
             <img
               src="/assets/dmode_white.png"
-              alt="Dark mode"
+              alt=""
               className={"toggle-icon icon-dark-mode"}
             />
           </button>

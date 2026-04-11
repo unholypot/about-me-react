@@ -10,7 +10,7 @@ function Footer() {
       viewport={defaultViewport}
     >
 
-      <p>Copyright &#169; 2025 Allen Saji.</p>
+      <p>Copyright &#169; 2026 Allen Saji.</p>
       <p> Built with React {"//"} Running on Vercel.</p>
     </motion.footer>
   );

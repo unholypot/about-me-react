@@ -190,8 +190,10 @@ const timelineEntries = [
 function PreviewPanel({ entry }) {
   return (
     <div className="timeline-preview-panel">
-      <h4 className="timeline-detail-section-title">Overview</h4>
-      <p className="timeline-preview-overview">{entry.overview}</p>
+      <div className="timeline-detail-section">
+        <h4 className="timeline-detail-section-title">Overview</h4>
+        <p className="timeline-preview-overview">{entry.overview}</p>
+      </div>
       {entry.role && (
         <div className="timeline-detail-section">
           <h4 className="timeline-detail-section-title">What I Did</h4>

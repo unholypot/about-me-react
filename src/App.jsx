@@ -31,17 +31,20 @@ function App() {
 
   return (
     <>
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <Navbar
         darkMode={darkMode}
         toggleDarkMode={toggleDarkMode}
         menuOpen={menuOpen}
         toggleMenu={toggleMenu}
       />
-      <Profile />
-      <About />
-      <Experience />
-      <Timeline />
-      <Contact />
+      <main id="main-content">
+        <Profile />
+        <About />
+        <Experience />
+        <Timeline />
+        <Contact />
+      </main>
       <Footer />
     </>
   );
