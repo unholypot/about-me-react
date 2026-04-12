@@ -67,18 +67,18 @@ const timelineEntries = [
     year: "2026",
     title: "Honours Research",
     description:
-      "Investigating the use of artificial intelligence and computer vision techniques to analyse bubble formation and behaviour in engineering systems. The research explores how machine learning models can be used to detect, track, and characterise bubbles from visual data for improved monitoring and analysis.",
+      "Using AI and computer vision to analyse bubble behaviour in engineering systems. Early stages — the scope and approach are still being worked out.",
     tags: ["Research", "Computer Vision", "AI/ML"],
     overview:
-      "This honours research project explores the application of AI and computer vision for analysing bubble dynamics in experimental systems. The aim is to develop algorithms capable of detecting bubbles, tracking their motion, and extracting meaningful physical parameters from visual data. The work will involve literature review, dataset preparation, model experimentation, and evaluation of different approaches for reliable bubble identification and analysis.",
+      "My honours thesis topic. The idea is to use computer vision to detect and analyse bubbles in experimental systems, but the exact methodology is still being defined. Right now the work is exploratory — reading the literature, figuring out what's already been done, and narrowing down what direction to take.",
     role:
-      "Honours researcher – responsible for conducting literature review, designing the research methodology, developing AI-based detection models, analysing results, and documenting findings for the final thesis.",
+      "Student researcher. Draft the project proposal, work through the literature review, settle on a methodology, then plan the remaining steps from there.",
     highlights: [
-    "Literature review on bubble detection and computer vision techniques (in progress)",
-    "Dataset exploration and preparation (planned)",
-    "Model development and experimentation (to be continued)"
+    "Project proposal (in progress)",
+    "Literature review (in progress)",
+    "Methodology — to be determined based on literature findings",
   ],
-    outcome: "Ongoing — research currently in early stages and progressing toward thesis completion.",
+    outcome: "Ongoing — early stages.",
 
   links: { github: null, liveDemo: null, report: null },
   },
@@ -151,7 +151,7 @@ const timelineEntries = [
       "Built a multi-component elevator simulator in C for Linux using POSIX shared memory, multithreading, and TCP/IP sockets.",
     tags: ["C", "Linux", "POSIX", "TCP/IP"],
     overview:
-      "A complex systems programming project simulating a networked multi-floor elevator controller. Multiple processes communicate over TCP/IP and share state via POSIX shared memory — modelling real-time concurrent operation.",
+      "A systems programming project simulating a networked multi-floor elevator controller. Multiple processes communicate over TCP/IP and share state via POSIX shared memory — modelling real-time concurrent operation.",
     role:
       "Sole developer — designed the system architecture and implemented all components: controller, simulator, display, and network layer.",
     highlights: [
