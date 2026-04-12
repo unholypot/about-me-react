@@ -250,7 +250,7 @@ function DetailPanel({ entry }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            ⌥ GitHub
+            ↗ GitHub
           </a>
         )}
         {liveDemo && (
