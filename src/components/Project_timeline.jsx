@@ -64,30 +64,37 @@ const panelVariants = {
    ────────────────────────────────────────────────────────── */
 const timelineEntries = [
   {
-    year: "2026",
-    title: "Honours Research",
-    description:
-      "Using AI and computer vision to analyse bubble behaviour in engineering systems. Early stages — the scope and approach are still being worked out.",
-    tags: ["Research", "Computer Vision", "AI/ML"],
-    overview:
-      "My honours thesis topic. The idea is to use computer vision to detect and analyse bubbles in experimental systems, but the exact methodology is still being defined. Right now the work is exploratory — reading the literature, figuring out what's already been done, and narrowing down what direction to take.",
-    role:
-      "Student researcher. Draft the project proposal, work through the literature review, settle on a methodology, then plan the remaining steps from there.",
-    highlights: [
-    "Project proposal (in progress)",
-    "Literature review (in progress)",
-    "Methodology — to be determined based on literature findings",
-  ],
-    outcome: "Ongoing — early stages.",
+year: "2026",
+title: "Honours Research",
+description:
+"Applying AI and computer vision techniques to detect and analyse bubble behaviour in water electrolyser imagery, with a focus on segmentation, annotation, and model comparison.",
+tags: ["Research", "Computer Vision", "AI/ML", "Segmentation"],
 
-  links: { github: null, liveDemo: null, report: null },
-  },
+overview:
+"My honours thesis focuses on using machine learning and computer vision to analyse bubbles in high-speed electrolyser video data. The project involves reviewing existing bubble detection methods, preparing annotated datasets, and exploring segmentation-based approaches for identifying small, overlapping, and densely packed bubbles. The work sits at the intersection of applied AI, image analysis, and engineering research.",
+
+role:
+"Student researcher. I worked on the project proposal, literature review, dataset preparation, CVAT polygon annotation, and methodology development. I also investigated computer vision and deep learning approaches including YOLO-based detection, U-Net-style segmentation, Mask R-CNN, and related bubble analysis pipelines.",
+
+highlights: [
+"Reviewed classical image processing and deep learning methods for bubble detection",
+"Annotated high-speed electrolyser frames using CVAT polygon segmentation",
+"Explored YOLO-based detection, U-Net, Mask R-CNN, and instance segmentation approaches",
+"Developed the planned workflow for dataset preparation, model training, evaluation, and bubble measurement"
+],
+
+outcome:
+"Ongoing. Semester 1 focused on research planning, literature review, dataset annotation, and methodology development. The next stage involves model training, evaluation, and comparison using segmentation metrics such as IoU, mAP, precision, and recall.",
+
+links: { github: null, liveDemo: null, report: null },
+}
+,
   {
     year: "2026",
     title: "Portfolio Website",
     description:
       "A fully custom portfolio site with a retro-inspired design system and an interactive project timeline that adapts to how you're browsing — built from scratch with no UI framework.",
-    tags: ["React", "Vite", "Framer Motion", "Custom CSS"],
+    tags: ["React", "Vite", "Framer Motion", "CSS"],
     overview:
       "The site you're reading right now. I wanted a portfolio that didn't look like every other Tailwind templates, so I built this one from the ground up. The goal was to make something that felt personal, loaded fast, and actually showed off the kind of frontend work I enjoy doing.",
     role:
