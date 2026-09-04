@@ -9,10 +9,10 @@ import Footer from "./components/Footer.jsx";
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
-    // Use saved preference; default to dark mode if none saved
+    // Use saved preference; default to light mode if none saved
     const saved = localStorage.getItem("theme");
     if (saved) return saved === "dark";
-    return true;
+    return false;
   });
   const [menuOpen, setMenuOpen] = useState(false);
 
